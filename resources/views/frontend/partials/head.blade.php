@@ -29,3 +29,16 @@
 <link rel="shortcut icon" href="{{ asset('frontend/assets/images/favicon.png') }}" type="image/x-icon">
 
 <link rel="stylesheet" href="{{ asset('admin/assets/css/toastr.min.css') }}">
+
+<style>
+    /* Toastr-er title ebong message er font size baranor jonno */
+    #toast-container > .toast {
+        font-size: 16px !important; 
+        min-width: 300px !important;  
+    }
+
+    .toast-message {
+        font-size: 15px !important;
+        font-weight: 500;
+    }
+</style>

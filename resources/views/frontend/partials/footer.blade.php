@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4">
                     <div class="single-widget about-widget">
-                        <a href="http://127.0.0.1:8000" class="footer-brand-logo mb-25"><img
-                                src="assets/images/logo.png" alt="footer-logo" /></a>
+                        <a href="{{ route('home') }}" class="footer-brand-logo mb-25"><img src="{{ asset('frontend/assets/images/logo.png') }}"
+                                alt="footer-logo" /></a>
                         <p class="address-text">
                             House 24, Road 17 <br />
                             Banani, <br />
@@ -94,12 +94,16 @@
                             Receive our latest updates about our <br> products and promotions.
                         </p>
                         <div class="newsletter-form mb-40">
-                            <form id="subscribe_form" name="subscribe_form" method="POST">
-                                <input type="hidden" name="_token" value="z8IzV1IjwBDBzh2xk5mWIRncryxtnW1G2NyKj67x">
+                            <form id="subscribe_form" action="{{ route('subscriber') }}" name="subscribe_form"
+                                method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control subscribe" id="subscribe" name="subscribe"
+                                    <input type="email" class="form-control subscribe" id="subscribe" name="email"
                                         placeholder="Email" required />
-                                    <button type="button" class="subscribe-btn subscribe_btn">Subscribe</button>
+                                    {{-- @error('email')
+                                        <span style="color: red; font-size: 12px;">{{ $message }}</span>
+                                    @enderror --}}
+                                    <button type="submit" class="subscribe-btn">Subscribe</button>
                                 </div>
                             </form>
                         </div>

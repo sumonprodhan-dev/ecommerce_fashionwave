@@ -1,86 +1,42 @@
 @extends('frontend.layouts.app')
 
 @push('title')
-    
 @endpush
 
 @push('styles')
-    
 @endpush
 
 @section('content')
     <!-- hero-section area start here  -->
     <div class="hero-section">
         <div class="hero-slider">
-            <div class="signle-slide"
-                style="background-image: url('http://localhost/projects/ecom/frontend/assets/images/slider/slider.jpg');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6 mb-5">
-                            <div class="hero-slider-content text-center">
-                                <h2 class="slider-sub-title">
-                                    New Collection</h2>
-                                <h1 class="slider-title">
-                                    The New autmn
-                                </h1>
-                                <p class="slider-text">
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna
-                                    justo, lacinia eget consectetur sed</p>
-                                <div class="slider-btn">
-                                    <a href="/product/all" class="secondary-btn">See Colections
-                                        <i class="iocn flaticon-right-arrow"></i></a>
+            @forelse ($sliders as $slider)
+                <div class="signle-slide" style="background-image: url('{{ asset($slider->image) }}');">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-6 mb-5">
+                                <div class="hero-slider-content text-center">
+                                    <h2 class="slider-sub-title">
+                                        {{ $slider->en_title }}</h2>
+                                    <h1 class="slider-title">
+                                        {{ $slider->en_sub_title }}
+                                    </h1>
+                                    <p class="slider-text">
+                                        {{ $slider->en_description }}</p>
+                                    <div class="slider-btn">
+                                        <a href="#" class="secondary-btn">See Colections
+                                            <i class="iocn flaticon-right-arrow"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="signle-slide"
-                style="background-image: url('http://localhost/projects/ecom/frontend/assets/images/slider/slider.jpg');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6 mb-5">
-                            <div class="hero-slider-content text-center">
-                                <h2 class="slider-sub-title">
-                                    Summer Sale</h2>
-                                <h1 class="slider-title">
-                                    The Summer!!
-                                </h1>
-                                <p class="slider-text">
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna
-                                    justo, lacinia eget consectetur sed</p>
-                                <div class="slider-btn">
-                                    <a href="/product/all" class="secondary-btn">See Colections
-                                        <i class="iocn flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            @empty
+                <div class="signle-slide text-center ">
+                    <h1>No slider found</h1>
                 </div>
-            </div>
-            <div class="signle-slide"
-                style="background-image: url('http://localhost/projects/ecom/frontend/assets/images/slider/slider.jpg');">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6 mb-5">
-                            <div class="hero-slider-content text-center">
-                                <h2 class="slider-sub-title">
-                                    New Collection</h2>
-                                <h1 class="slider-title">
-                                    The Winter!!
-                                </h1>
-                                <p class="slider-text">
-                                    Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vivamus magna
-                                    justo, lacinia eget consectetur sed</p>
-                                <div class="slider-btn">
-                                    <a href="/product/all" class="secondary-btn">See Colections
-                                        <i class="iocn flaticon-right-arrow"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
     <!-- hero-section area end here  -->
@@ -223,179 +179,56 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
-                                    src="assets/images/products/tshirt.png" alt="product" /></a>
-                            <div class="product-flags">
-                                <span class="product-flag sale">NEW</span>
-                                <span class="product-flag discount">-10.00</span>
+
+                @forelse ($products as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-grid-product">
+                            <div class="product-top">
+                                <a href="/product/single/fit-flare-dress-2"><img class="product-thumbnal"
+                                        src="{{ $product->primary_image }}" alt="product" /></a>
+                                <div class="product-flags">
+                                    <span class="product-flag sale">{{ $product->sale }}</span>
+                                    <span class="product-flag discount">{{ $product->discount }}</span>
+                                </div>
+                                <ul class="prdouct-btn-wrapper">
+                                    <li class="single-product-btn">
+                                        <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
+                                                class="icon flaticon-bar-chart"></i></a>
+                                    </li>
+                                    <li class="single-product-btn">
+                                        <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
+                                                class="icon flaticon-like"></i></a>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="11" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="11" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/fit-flare-dress-2">Fit-Flare Dress</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">$ 200</span>
-                                <span class="price">$ 180</span>
+                            <div class="product-info text-center">
+                                <h4 class="product-catagory">{{ $product->category->en_name }}</h4>
+                                <input type="hidden" name="quantity" value="1" id="product_quantity">
+                                <h3 class="product-name"><a class="product-link"
+                                        href="/product/single/fit-flare-dress-2">{{ $product->en_name }}</a>
+                                </h3>
+                                <!-- This is server side code. User can not modify it. -->
+                                <ul class="product-review">
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                </ul>
+                                <div class="product-price">
+                                    <span class="regular-price">{{ $product->price }}</span>
+                                    <span class="price">{{ $product->discount_price }}</span>
+                                </div>
+                                <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
+                                    data-id="11">Add
+                                    To Cart <i class="icon fas fa-plus-circle"></i></a>
                             </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="11">Add
-                                To Cart <i class="icon fas fa-plus-circle"></i></a>
                         </div>
+
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="product-details.html"><img class="product-thumbnal"
-                                    src="assets/images/products/tshirt.png" alt="product" /></a>
-                            <div class="product-flags">
-                                <span class="product-flag sale">HOT</span>
-                                <span class="product-flag discount">-10.00</span>
-                            </div>
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="7" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="7" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link" href="product-details.html">Tailored Fit
-                                    Mesh-Panel</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">$ 500</span>
-                                <span class="price">$ 450</span>
-                            </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="7">Add To
-                                Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/rosmo-namino-2"><img class="product-thumbnal"
-                                    src="assets/images/products/tshirt.png" alt="product" /></a>
-                            <div class="product-flags">
-                                <span class="product-flag sale">HOT</span>
-                                <span class="product-flag discount">-10.00</span>
-                            </div>
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="8" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="8" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link" href="/product/single/rosmo-namino-2">Rosmo
-                                    Namino</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">$ 500</span>
-                                <span class="price">$ 450</span>
-                            </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="8">Add To
-                                Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="single-grid-product">
-                        <div class="product-top">
-                            <a href="/product/single/Best-t-Shirt-for-male"><img class="product-thumbnal"
-                                    src="assets/images/products/tshirt.png" alt="product" /></a>
-                            <div class="product-flags">
-                                <span class="product-flag sale">NEW</span>
-                                <span class="product-flag discount">-10.00</span>
-                            </div>
-                            <ul class="prdouct-btn-wrapper">
-                                <li class="single-product-btn">
-                                    <a class="product-btn CompareList" data-id="9" title="Add To Compare"><i
-                                            class="icon flaticon-bar-chart"></i></a>
-                                </li>
-                                <li class="single-product-btn">
-                                    <a class="product-btn MyWishList" data-id="9" title="Add To Wishlist"><i
-                                            class="icon flaticon-like"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-info text-center">
-                            <h4 class="product-catagory">HOT - COLLECTION</h4>
-                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                            <h3 class="product-name"><a class="product-link"
-                                    href="/product/single/Best-t-Shirt-for-male">Best T-Shirt for
-                                    Male</a>
-                            </h3>
-                            <!-- This is server side code. User can not modify it. -->
-                            <ul class="product-review">
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                <li class="review-item"><i class="flaticon-star"></i></li>
-                            </ul>
-                            <div class="product-price">
-                                <span class="regular-price">$ 500</span>
-                                <span class="price">$ 450</span>
-                            </div>
-                            <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart" data-id="9">Add To
-                                Cart <i class="icon fas fa-plus-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <p>No Available Product</p>
+                @endforelse
 
             </div>
         </div>
@@ -419,38 +252,18 @@
                 </div>
             </div>
             <div class="story-box-slide">
-                <div class="single-story-box">
-                    <img src="assets/images/avatar.jpg" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Rony <span class="story-year">Engineer</span>
+                @forelse ($testimonials as $testimonial)
+                    <div class="single-story-box">
+                    <img src="{{ $testimonial->image }}" class="avatar" alt="Testimonial">
+                    <h3 class="story-title">{{ $testimonial->name }} <span class="story-year">{{ $testimonial->designation }}</span>
                     </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
+                    <p class="story-content">{{ $testimonial->en_description }}</p>
                 </div>
-                <div class="single-story-box">
-                    <img src="assets/images/avatar2.jpg" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Dholi <span class="story-year">IT Officer</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
-                </div>
-                <div class="single-story-box">
-                    <img src="assets/images/avatar.jpg" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Jakir <span class="story-year">CEO</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
-                </div>
-                <div class="single-story-box">
-                    <img src="assets/images/avatar2.jpg" class="avatar" alt="Testimonial">
-                    <h3 class="story-title">Nahar <span class="story-year">Programmer</span>
-                    </h3>
-                    <p class="story-content">I recently discovered FashionWave, and I must say it's become my go-to for
-                        all things fashion! From trendy tops to chic dresses, the site offers a fantastic variety of
-                        clothing that feels both high-quality and reasonably priced. </p>
-                </div>
+                @empty
+                    <div class="single-story-box">
+                        <p>No Available Testimonial</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </div>
@@ -568,8 +381,7 @@
                                 <div class="product-info text-center">
                                     <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
                                     <input type="hidden" name="quantity" value="1" id="product_quantity">
-                                    <h3 class="product-name"><a class="product-link"
-                                            href="product-details.html">Tailored
+                                    <h3 class="product-name"><a class="product-link" href="product-details.html">Tailored
                                             Fit Mesh-Panel</a>
                                     </h3>
                                     <!-- This is server side code. User can not modify it. -->
@@ -747,8 +559,7 @@
                                 <div class="product-info text-center">
                                     <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
                                     <input type="hidden" name="quantity" value="1" id="product_quantity">
-                                    <h3 class="product-name"><a class="product-link"
-                                            href="product-details.html">Tailored
+                                    <h3 class="product-name"><a class="product-link" href="product-details.html">Tailored
                                             Fit Mesh-Panel</a>
                                     </h3>
                                     <!-- This is server side code. User can not modify it. -->
@@ -926,8 +737,7 @@
                                 <div class="product-info text-center">
                                     <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
                                     <input type="hidden" name="quantity" value="1" id="product_quantity">
-                                    <h3 class="product-name"><a class="product-link"
-                                            href="product-details.html">Tailored
+                                    <h3 class="product-name"><a class="product-link" href="product-details.html">Tailored
                                             Fit Mesh-Panel</a>
                                     </h3>
                                     <!-- This is server side code. User can not modify it. -->
@@ -1105,8 +915,7 @@
                                 <div class="product-info text-center">
                                     <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
                                     <input type="hidden" name="quantity" value="1" id="product_quantity">
-                                    <h3 class="product-name"><a class="product-link"
-                                            href="product-details.html">Tailored
+                                    <h3 class="product-name"><a class="product-link" href="product-details.html">Tailored
                                             Fit Mesh-Panel</a>
                                     </h3>
                                     <!-- This is server side code. User can not modify it. -->
@@ -1180,12 +989,12 @@
                                     </div>
                                     <ul class="prdouct-btn-wrapper">
                                         <li class="single-product-btn">
-                                            <a class="product-btn CompareList" data-id="9" title="Add to compare"><i
-                                                    class="icon flaticon-bar-chart"></i></a>
+                                            <a class="product-btn CompareList" data-id="9"
+                                                title="Add to compare"><i class="icon flaticon-bar-chart"></i></a>
                                         </li>
                                         <li class="single-product-btn">
-                                            <a class="product-btn MyWishList" data-id="9" title="Add to wishlist"><i
-                                                    class="icon flaticon-like"></i></a>
+                                            <a class="product-btn MyWishList" data-id="9"
+                                                title="Add to wishlist"><i class="icon flaticon-like"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -1225,5 +1034,4 @@
 @endsection
 
 @push('scripts')
-    
 @endpush

@@ -13,11 +13,11 @@
 
 <script>
     toastr.options = {
-        "closeButton": false,
+        "closeButton": true,
         "debug": false,
         "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-bottom-right",
+        "progressBar": true,
+        "positionClass": "toast-top-right",
         "preventDuplicates": false,
         "onclick": null,
         "showDuration": "300",
@@ -32,8 +32,27 @@
 </script>
 
 <script>
-    (function (window, document) {
-        var loader = function () {
+    // Success Message check
+    @if (Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    // Error Message check
+    @if (Session::has('error'))
+        toastr.error("{{ Session::get('error') }}");
+    @endif
+
+    // Validation Errors check (jemon: email already exists)
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+</script>
+
+<script>
+    (function(window, document) {
+        var loader = function() {
             var script = document.createElement("script"),
                 tag = document.getElementsByTagName("script")[0];
             script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36)
