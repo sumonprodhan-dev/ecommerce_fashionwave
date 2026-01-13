@@ -10,7 +10,7 @@
     <!-- hero-section area start here  -->
     <div class="hero-section">
         <div class="hero-slider">
-            @forelse ($sliders as $slider)
+            {{-- @forelse ($sliders as $slider)
                 <div class="signle-slide" style="background-image: url('{{ asset($slider->image) }}');">
                     <div class="container">
                         <div class="row align-items-center">
@@ -36,7 +36,7 @@
                 <div class="signle-slide text-center ">
                     <h1>No slider found</h1>
                 </div>
-            @endforelse
+            @endforelse --}}
         </div>
     </div>
     <!-- hero-section area end here  -->
@@ -180,7 +180,7 @@
             </div>
             <div class="row">
 
-                @forelse ($products as $product)
+                {{-- @forelse ($products as $product)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="single-grid-product">
                             <div class="product-top">
@@ -228,7 +228,7 @@
                     </div>
                 @empty
                     <p>No Available Product</p>
-                @endforelse
+                @endforelse --}}
 
             </div>
         </div>
@@ -252,7 +252,7 @@
                 </div>
             </div>
             <div class="story-box-slide">
-                @forelse ($testimonials as $testimonial)
+                {{-- @forelse ($testimonials as $testimonial)
                     <div class="single-story-box">
                     <img src="{{ $testimonial->image }}" class="avatar" alt="Testimonial">
                     <h3 class="story-title">{{ $testimonial->name }} <span class="story-year">{{ $testimonial->designation }}</span>
@@ -263,7 +263,7 @@
                     <div class="single-story-box">
                         <p>No Available Testimonial</p>
                     </div>
-                @endforelse
+                @endforelse --}}
             </div>
         </div>
     </div>

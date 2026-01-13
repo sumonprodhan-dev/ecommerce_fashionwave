@@ -24,13 +24,13 @@ class HomeController extends Controller
 
 
     public function index(){
-        $sliders = Slider::get();
-        $products = Product::get();
-        $categories = Category::get();
+        // $sliders = Slider::get();
+        // $products = Product::get();
+        // $categories = Category::get();
         // $brands = Brand::get();
-        $testimonials = Testimonial::get();
+        // $testimonials = Testimonial::get();
 
-        return view('frontend.pages.index', compact('sliders', 'products', 'categories', 'testimonials'));
+        return view('frontend.pages.index');
     }
 
     public function shop(){
