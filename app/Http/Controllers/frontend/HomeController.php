@@ -24,15 +24,7 @@ class HomeController extends Controller
 
 
     public function index(){
-<<<<<<< HEAD
-        // $sliders = Slider::get();
-        // $products = Product::get();
-        // $categories = Category::get();
-        // $brands = Brand::get();
-        // $testimonials = Testimonial::get();
 
-        return view('frontend.pages.index');
-=======
         $sliders = Slider::get();
         $products = Product::get();
         $categories = Category::get();
@@ -40,7 +32,7 @@ class HomeController extends Controller
         $testimonials = Testimonial::get();
 
         return view('frontend.pages.index', compact('sliders', 'products', 'categories', 'brands', 'testimonials'));
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
     }
 
     public function shop(){

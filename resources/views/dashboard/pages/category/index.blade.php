@@ -35,45 +35,20 @@
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
-<<<<<<< HEAD
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Icon</th>
-                                        <th>Name (EN)</th>
-=======
+
                                     <tr class="text-center">
                                         <th>SL</th>
                                         <th>Icon</th>
                                         <th>Name (EN)</th>
                                         <th>Name (GN)</th>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                                         <th>Slug</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{-- Ekhane Loop hobe (Example deya holo) --}}
-<<<<<<< HEAD
-                                    {{-- @foreach($categories as $key => $category)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>
-                                            <img src="{{ asset($category->icon_class ?? 'assets/images/icons/add-img.svg') }}" width="40" alt="icon">
-                                        </td>
-                                        <td>{{ $category->en_category_name }}</td>
-                                        <td>{{ $category->category_slug }}</td>
-                                        <td>
-                                            <a href="{{ url('/admin/category/edit/'.$category->id) }}" class="btn btn-info btn-sm">Edit</a>
-                                            
-                                            <form action="{{ url('/admin/category/delete/'.$category->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach --}}
-=======
+
                                     @foreach($categories as $key => $category)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -94,7 +69,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                                 </tbody>
                             </table>
                         </div>
@@ -104,9 +79,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-@endsection
-=======
+
 @endsection
 
 @push('scripts')
@@ -131,4 +104,4 @@
     });
 </script>
 @endpush
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+

@@ -37,55 +37,28 @@
                     <div class="gallery__content">
                         <div class="d-flex justify-content-between mb-4">
                             <h4>All Brands</h4>
-<<<<<<< HEAD
-                            <a href="{{ url('/admin/brand/add') }}" class="btn btn-blue">+ Add New Brand</a>
-=======
+
                             <a href="{{ route('admin.brand.create') }}" class="btn btn-blue">+ Add New Brand</a>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                         </div>
                         
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
                                 <thead>
-<<<<<<< HEAD
-                                    <tr>
-                                        <th>SL</th>
-                                        <th>Brand Image</th>
-                                        <th>Brand Name (EN)</th>
-=======
+
                                     <tr class="text-center">
                                         <th>SL</th>
                                         <th>Brand Image</th>
                                         <th>Brand Name (EN)</th>
                                         <th>Brand Name (GN)</th>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                                         <th>Slug</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{-- Loop through brands --}}
-<<<<<<< HEAD
-                                    {{-- @foreach($brands as $key => $brand)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>
-                                            <img src="{{ asset($brand->brand_image) }}" width="60" height="40" style="object-fit: contain;" alt="brand">
-                                        </td>
-                                        <td>{{ $brand->en_brand_name }}</td>
-                                        <td>{{ $brand->brand_slug }}</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <a href="{{ url('/admin/brand/edit/'.$brand->id) }}" class="btn btn-info btn-sm">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
-                                                
-                                                <form action="{{ url('/admin/brand/delete/'.$brand->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this brand?')">
-                                                        <i class="fa fa-trash"></i> Delete
-=======
+
                                     @foreach($brands as $key => $brand)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -106,7 +79,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm delete-confirm">
                                                         <i class="fa fa-trash"></i>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                                                     </button>
                                                 </form>
                                             </div>
@@ -117,23 +90,18 @@
                                     @if($brands->isEmpty())
                                     <tr>
                                         <td colspan="5" class="text-center">No brands found.</td>
-                                    </tr>
-<<<<<<< HEAD
-                                    @endif --}}
-=======
+
                                     @endif
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                                 </tbody>
                             </table>
                         </div>
                         
                         {{-- Pagination link jodi thake --}}
                         <div class="mt-4">
-<<<<<<< HEAD
-                            {{-- {{ $brands->links() }} --}}
-=======
+
                             {{ $brands->links() }}
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
                         </div>
                     </div>
                 </div>
@@ -144,9 +112,7 @@
 @endsection
 
 @push('scripts')
-<<<<<<< HEAD
-    
-=======
+
     <script>
     $('.delete-confirm').click(function(event) {
         var form =  $(this).closest("form"); 
@@ -167,5 +133,5 @@
         });
     });
 </script>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
 @endpush

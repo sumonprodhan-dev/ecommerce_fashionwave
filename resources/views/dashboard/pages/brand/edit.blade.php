@@ -1,22 +1,8 @@
 @extends('dashboard.layouts.app')
 
 @push('title')
-<<<<<<< HEAD
-    
-@endpush
 
-@push('styles')
-    
-@endpush
 
-@section('content')
-
-@endsection
-
-@push('scripts')
-    
-=======
-    Edit Brand
 @endpush
 
 @push('styles')
@@ -124,5 +110,5 @@
         }
     }
 </script>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
+
 @endpush
