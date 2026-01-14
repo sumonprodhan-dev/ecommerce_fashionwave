@@ -58,6 +58,15 @@
                 <li class="">
                     <a href="{{ route('admin.brand.index') }}">
                         <i class="fa fa-circle"></i>
+<<<<<<< HEAD
+=======
+                        <span>Brand</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{{ route('admin.tag.index') }}">
+                        <i class="fa fa-circle"></i>
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
                         <span>Tags</span>
                     </a>
                 </li>
@@ -83,13 +92,21 @@
             </a>
             <ul>
                 <li class="">
+<<<<<<< HEAD
                     <a href="create-product.html">
+=======
+                    <a href="{{ route('admin.product.create') }}">
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
                         <i class="fa fa-circle"></i>
                         <span>Add Product</span>
                     </a>
                 </li>
                 <li class="">
+<<<<<<< HEAD
                     <a href="products.html">
+=======
+                    <a href="{{ route('admin.product.index') }}">
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
                         <i class="fa fa-circle"></i>
                         <span>Product List</span>
                     </a>

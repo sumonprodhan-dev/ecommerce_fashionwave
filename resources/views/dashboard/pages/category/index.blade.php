@@ -35,16 +35,25 @@
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
+<<<<<<< HEAD
                                     <tr>
                                         <th>SL</th>
                                         <th>Icon</th>
                                         <th>Name (EN)</th>
+=======
+                                    <tr class="text-center">
+                                        <th>SL</th>
+                                        <th>Icon</th>
+                                        <th>Name (EN)</th>
+                                        <th>Name (GN)</th>
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
                                         <th>Slug</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {{-- Ekhane Loop hobe (Example deya holo) --}}
+<<<<<<< HEAD
                                     {{-- @foreach($categories as $key => $category)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
@@ -64,6 +73,28 @@
                                         </td>
                                     </tr>
                                     @endforeach --}}
+=======
+                                    @foreach($categories as $key => $category)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>
+                                            <img src="{{ asset('uploads/category/'.$category->image) }}" border="0" width="60" height="40" style="object-fit: contain;" alt="brand">
+                                        </td>
+                                        <td>{{ $category->en_name }}</td>
+                                        <td>{{ $category->gn_name }}</td>
+                                        <td>{{ $category->slug }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.category.edit', $category->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                                            
+                                            <form action="{{ route('admin.category.delete', $category->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm delete-confirm" ><i class="fa fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
                                 </tbody>
                             </table>
                         </div>
@@ -73,4 +104,31 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+
+@push('scripts')
+    <script>
+    $('.delete-confirm').click(function(event) {
+        var form =  $(this).closest("form"); 
+        event.preventDefault(); 
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit(); 
+            }
+        });
+    });
+</script>
+@endpush
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d

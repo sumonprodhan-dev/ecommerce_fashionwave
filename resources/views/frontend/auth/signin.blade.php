@@ -14,7 +14,7 @@
             <div class="breadcrumb-wrap text-center">
                 <h2 class="page-title">Sign In</h2>
                 <ul class="breadcrumb-pages">
-                    <li class="page-item"><a class="page-item-link" href="http://127.0.0.1:8000">Home</a></li>
+                    <li class="page-item"><a class="page-item-link" href="{{ route('home') }}">Home</a></li>
                     <li class="page-item">Sign In</li>
                 </ul>
             </div>

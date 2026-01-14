@@ -121,7 +121,11 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<<<<<<< HEAD
 <script>
+=======
+{{-- <script>
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
     toastr.options = {
         "closeButton": false,
         "debug": false,
@@ -139,4 +143,45 @@
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     };
+<<<<<<< HEAD
+=======
+</script> --}}
+
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+</script>
+
+<script>
+    // Success Message check
+    @if (Session::has('success'))
+        toastr.success("{{ Session::get('success') }}");
+    @endif
+
+    // Error Message check
+    @if (Session::has('error'))
+        toastr.error("{{ Session::get('error') }}");
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}");
+        @endforeach
+    @endif
+>>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
 </script>
