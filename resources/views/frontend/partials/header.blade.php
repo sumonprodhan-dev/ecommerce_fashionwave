@@ -74,7 +74,7 @@
 
                             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="accountDropdown">
                                 @auth
-                                    <li><a class="dropdown-item fs-4" href="{{ url('/dashboard') }}">Dashboard</a></li>
+                                    <li><a class="dropdown-item fs-4" href="{{ url('admin/dashboard') }}">Dashboard</a></li>
                                     <li><a class="dropdown-item fs-4" href="{{ url('/user/profile') }}">Profile</a></li>
                                     <li>
                                         <hr class="dropdown-divider">

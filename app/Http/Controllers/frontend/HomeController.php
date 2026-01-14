@@ -27,10 +27,10 @@ class HomeController extends Controller
         $sliders = Slider::get();
         $products = Product::get();
         $categories = Category::get();
-        // $brands = Brand::get();
+        $brands = Brand::get();
         $testimonials = Testimonial::get();
 
-        return view('frontend.pages.index', compact('sliders', 'products', 'categories', 'testimonials'));
+        return view('frontend.pages.index', compact('sliders', 'products', 'categories', 'brands', 'testimonials'));
     }
 
     public function shop(){
