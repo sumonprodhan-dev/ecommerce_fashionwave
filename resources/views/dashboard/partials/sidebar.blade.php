@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="#">
+                    <a href="">
                         <i class="fa fa-circle"></i>
                         <span>Sliders</span>
                     </a>
@@ -301,7 +301,7 @@
         </li>
 
         <li class="">
-            <a href="gateways.html">
+            <a href="{{ route('admin.gateway.edit') }}">
                 <i class="fa fa-money-bill"></i>
                 <span>Payment Gateway</span>
             </a>

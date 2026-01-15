@@ -99,18 +99,14 @@
                                                     <span
                                                         class="badge admin-old-price text-danger">{{ $product->discount_price }}</span>
                                                 @endif
-                                                <span
-                                                    class="badge admin-new-price text-danger text-decoration-line-through">00</span>
                                             </td>
 
                                             <td>{{ $product->status }}</td>
                                             <td>
-                                                <div class="action__buttons"><a href="product-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="http://127.0.0.1:8000/admin/product/inactive/11"
-                                                        class="btn-action"><i class="fas fa-toggle-on"></i></a><a
-                                                        href="http://127.0.0.1:8000/admin/product/delete/11"
-                                                        class="btn-action delete"><i class="fas fa-trash-alt"></i></a>
+                                                <div class="action__buttons">
+                                                    <a href="{{ route('admin.product.edit', $product->id) }}"  class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a  href="#" class="btn-action"><i class="fas fa-toggle-on"></i></a>
+                                                    <a href="#" class="btn-action delete"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
                                             </td>
                                         </tr>

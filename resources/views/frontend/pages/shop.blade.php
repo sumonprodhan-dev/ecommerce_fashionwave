@@ -244,7 +244,7 @@
                                     </button>
                                     <div class="list-grid-view">
                                         <a href="/product/category/1" class="view-btn grid-view active"><img
-                                                class="view-icon" src="assets/images/view-grid.svg"
+                                                class="view-icon" src="{{ asset('frontend/assets/images/view-grid.svg') }}"
                                                 alt="view-grid" /></a>
                                     </div>
                                 </div>
@@ -254,18 +254,12 @@
                                     <form>
                                         <select class="form-select sortingFilter">
                                             <option value="stop">Categories</option>
-                                            <option value="/product/category/1">
-                                                Health Category
-                                            </option>
-                                            <option value="/product/category/2">
-                                                Women Fashion
-                                            </option>
-                                            <option value="/product/category/3">
-                                                Men Fashion
-                                            </option>
-                                            <option value="/product/category/4">
-                                                Electronic
-                                            </option>
+                                            @forelse ($categories as $category)
+                                                <option value="/product/category/{{ $category->id }}">
+                                                    {{ $category->en_name }}</option>
+                                            @empty
+                                                <option> value="">No Category Found</option>
+                                            @endforelse
                                         </select>
                                     </form>
                                 </div>
@@ -275,52 +269,57 @@
                     <div id="filterProduct">
                         <div class="product-list">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="single-grid-product">
-                                        <div class="product-top">
-                                            <a href="product-details.html"><img class="product-thumbnal"
-                                                    src="assets/images/products/tshirt.png" alt="product" /></a>
-                                            <div class="product-flags">
-                                                <span class="product-flag sale">NEW</span>
-                                                <span class="product-flag discount">-10.00</span>
+                                @forelse ($products as $product)
+                                    <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                        <div class="single-grid-product">
+                                            <div class="product-top">
+                                                <a href="{{ route('product.details', $product->en_slug) }}"><img class="product-thumbnal"
+                                                        src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" /></a>
+                                                <div class="product-flags">
+                                                    <span class="product-flag sale">{{ $product->sale }}</span>
+                                                    <span class="product-flag discount">{{ $product->discount }}</span>
+                                                </div>
+                                                <ul class="prdouct-btn-wrapper">
+                                                    <li class="single-product-btn">
+                                                        <a class="product-btn CompareList" data-id="1"
+                                                            title="Add To Compare"><i
+                                                                class="icon flaticon-bar-chart"></i></a>
+                                                    </li>
+                                                    <li class="single-product-btn">
+                                                        <a class="product-btn MyWishList" data-id="1"
+                                                            title="Add To Wishlist"><i class="icon flaticon-like"></i></a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <ul class="prdouct-btn-wrapper">
-                                                <li class="single-product-btn">
-                                                    <a class="product-btn CompareList" data-id="1"
-                                                        title="Add To Compare"><i class="icon flaticon-bar-chart"></i></a>
-                                                </li>
-                                                <li class="single-product-btn">
-                                                    <a class="product-btn MyWishList" data-id="1"
-                                                        title="Add To Wishlist"><i class="icon flaticon-like"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-info text-center">
-                                            <h4 class="product-catagory">ELLA - HALOTHEMES</h4>
-                                            <input type="hidden" name="quantity" value="1" id="product_quantity">
-                                            <h3 class="product-name"><a class="product-link"
-                                                    href="product-details.html">Plaid
-                                                    Cotton Shirt</a>
-                                            </h3>
-                                            <!-- This is server side code. User can not modify it. -->
-                                            <ul class="product-review">
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                                <li class="review-item"><i class="flaticon-star"></i></li>
-                                            </ul>
-                                            <div class="product-price">
-                                                <span class="regular-price">$ 100</span>
-                                                <span class="price">$ 90</span>
-                                            </div>
+                                            <div class="product-info text-center">
+                                                <h4 class="product-catagory">{{ $product->category->en_name }}</h4>
+                                                <input type="hidden" name="quantity" value="1"
+                                                    id="product_quantity">
+                                                <h3 class="product-name"><a class="product-link"
+                                                        href="product-details.html">{{ $product->en_name }}</a>
+                                                </h3>
+                                                <!-- This is server side code. User can not modify it. -->
+                                                <ul class="product-review">
+                                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                                </ul>
+                                                <div class="product-price">
+                                                    <span class="regular-price">{{ $product->price }}</span>
+                                                    <span class="price">{{ $product->price - $product->discount }}</span>
+                                                </div>
 
-                                            <a href="javascript:void(0)" title="Add to cart" class="add-cart addCart"
-                                                data-id="1">Add To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                                <a href="javascript:void(0)" title="Add to cart" class="add-cart addCart"
+                                                    data-id="1">Add To Cart <i class="icon fas fa-plus-circle"></i></a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
+                                @empty
+                                    <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">No Product Found</div>
+                                @endforelse
+                                {{-- <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
                                     <div class="single-grid-product">
                                         <div class="product-top">
                                             <a href="product-details.html"><img class="product-thumbnal"
@@ -634,14 +633,12 @@
                                                 data-id="6">Add To Cart <i class="icon fas fa-plus-circle"></i></a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="pagination-area mt-30">
-                                <ul class="paginations text-center">
-                                    <div class="row custom-pagination">
-                                    </div>
-
-                                </ul>
+                                <div class="paginations">
+                                    {{ $products->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -37,10 +37,8 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-one" role="tabpanel"
                                     aria-labelledby="nav-one-tab">
-                                    <form enctype="multipart/form-data" method="POST"
-                                        action="http://127.0.0.1:8000/admin/product/update">
-                                        <input type="hidden" name="_token"
-                                            value="lQnPJszFLzHk1PTa9MiQLLAw2hp88UgTyN0H2TXf">
+                                    {{-- <form enctype="multipart/form-data" method="POST" action="#">
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-vertical__item bg-style">
@@ -152,37 +150,41 @@
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">Description</label>
                                                         <textarea name="en_description" id="summernote" class="form-control"><p class="description-text"> </p>
-                                <p class="description-text"></p>
-                                <p class="description-text"></p></textarea>
+                                                            <p class="description-text"></p>
+                                                            <p class="description-text"></p>
+                                                        </textarea>
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">ShippingReturn</label>
-                                                        <textarea name="en_shippingreturn" id="summernote2" class="form-control"><p class="return-text"></p>
-                                    <p class="return-text"></p>
-                                    <p class="return-text"></p></textarea>
+                                                        <textarea name="en_shippingreturn" id="summernote2" class="form-control">
+                                                            <p class="return-text"></p>
+                                                            <p class="return-text"></p>
+                                                            <p class="return-text"></p>
+                                                        </textarea>
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">AdditionalInformation</label>
                                                         <textarea name="en_additionalinformation" id="summernote3" class="form-control"><p class="additional-information-text"> </p>
-                        <ul class="additional-feature">
-                            <li class="single-feature">
-                                <h3 class="feature-title">Comodous:</h3>
-                                <p class="feature-text">Comodous in tempor ullamcorper miaculis</p>
-                            </li>
-                            <li class="single-feature">
-                                <h3 class="feature-title">Mattis laoreet:</h3>
-                                <p class="feature-text">Pellentesque vitae neque mollis urna mattis laoreet.</p>
-                            </li>
-                            <li class="single-feature">
-                                <h3 class="feature-title">Divamus de ametos:</h3>
-                                <p class="feature-text">Divamus sit amet purus justo</p>
-                            </li>
-                            <li class="single-feature">
-                                <h3 class="feature-title">Molestie:</h3>
-                                <p class="feature-text">Proin molestie egestas orci ac suscipit risus posuere loremous</p>
-                            </li>
-                        </ul></textarea>
+                                                            <ul class="additional-feature">
+                                                                <li class="single-feature">
+                                                                    <h3 class="feature-title">Comodous:</h3>
+                                                                    <p class="feature-text">Comodous in tempor ullamcorper miaculis</p>
+                                                                </li>
+                                                                <li class="single-feature">
+                                                                    <h3 class="feature-title">Mattis laoreet:</h3>
+                                                                    <p class="feature-text">Pellentesque vitae neque mollis urna mattis laoreet.</p>
+                                                                </li>
+                                                                <li class="single-feature">
+                                                                    <h3 class="feature-title">Divamus de ametos:</h3>
+                                                                    <p class="feature-text">Divamus sit amet purus justo</p>
+                                                                </li>
+                                                                <li class="single-feature">
+                                                                    <h3 class="feature-title">Molestie:</h3>
+                                                                    <p class="feature-text">Proin molestie egestas orci ac suscipit risus posuere loremous</p>
+                                                                </li>
+                                                            </ul>
+                                                        </textarea>
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">Primary Image</label>
@@ -297,13 +299,248 @@
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">AdditionalInformation</label>
-                                                        <textarea name="fr_additionalinformation" id="summernote6" class="form-control"><p class="description-text"></p><p class="description-text"></p><p class="description-text"></p><ul class="additional-feature"><li class="single-feature">
-                            </li>
-                        </ul></textarea>
+                                                        <textarea name="fr_additionalinformation" id="summernote6" class="form-control">
+                                                            <p class="description-text"></p>
+                                                            <p class="description-text"></p>
+                                                            <p class="description-text"></p>
+                                                            <ul class="additional-feature">
+                                                                <li class="single-feature"> </li>
+                                                            </ul>
+                                                        </textarea>
                                                     </div>
 
                                                 </div>
                                             </div>
+                                        </div>
+                                    </form> --}}
+
+                                    <form enctype="multipart/form-data" method="POST"
+                                        action="{{ route('admin.product.update', $product->id) }}">
+                                        @csrf
+                                        @method('PUT')
+
+                                        <div class="row">
+                                            {{-- English Section --}}
+                                            <div class="col-md-6">
+                                                <div class="form-vertical__item bg-style">
+                                                    <div class="item-top mb-30">
+                                                        <h2>English:</h2>
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="en-product-name">Product Name</label>
+                                                        <input type="text" class="form-control" id="en-product-name"
+                                                            name="en_name" value="{{ $product->en_name }}"
+                                                            placeholder="Name">
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="en-product-slug">Product Slug</label>
+                                                        <input type="text" class="form-control" id="en-product-slug"
+                                                            name="en_slug" value="{{ $product->en_slug }}"
+                                                            placeholder="Slug">
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="en_brand_name">Brand Name</label>
+                                                        <select class="form-control" id="en_brand_name" name="brand_id">
+                                                            <option value="" disabled>---Select Brand---</option>
+                                                            @foreach ($brands as $brand)
+                                                                <option value="{{ $brand->id }}"
+                                                                    {{ $product->brand_id == $brand->id ? 'selected' : '' }}>
+                                                                    {{ $brand->en_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="en_category_name">Category Name</label>
+                                                        <select class="form-control" id="en_category_name"
+                                                            name="category_id">
+                                                            <option value="" disabled>---Select Category---</option>
+                                                            @foreach ($categories as $category)
+                                                                <option value="{{ $category->id }}"
+                                                                    {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                                                    {{ $category->en_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="tag_id">Item Tag</label>
+                                                        <select class="form-control" name="tag_id">
+                                                            <option value="" disabled>---Select item---</option>
+                                                            @foreach ($tags as $tag)
+                                                                <option value="{{ $tag->id }}"
+                                                                    {{ $product->tag_id == $tag->id ? 'selected' : '' }}>
+                                                                    {{ $tag->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="qty">Quantity</label>
+                                                        <input type="text" class="form-control" id="qty"
+                                                            name="qty" value="{{ $product->qty }}"
+                                                            placeholder="Quantity">
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="price">Price</label>
+                                                        <input type="number" min="0" class="form-control"
+                                                            id="price" name="price" value="{{ $product->price }}"
+                                                            placeholder="Price">
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="discount">Discount (%)</label>
+                                                        <input type="number" class="form-control" id="discount"
+                                                            name="discount" value="{{ $product->discount }}"
+                                                            placeholder="Discount">
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="discount_price">Discount Price</label>
+                                                        <input type="number" class="form-control" id="discount_price"
+                                                            name="discount_price" value="{{ $product->discount_price }}">
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="en_about">About</label>
+                                                        <textarea name="en_about" id="en_about" class="form-control">{{ $product->en_about }}</textarea>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="en_description">Description</label>
+                                                        <textarea name="en_description" id="summernote" class="form-control">{{ $product->en_description }}</textarea>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="en_shippingreturn">Shipping Return</label>
+                                                        <textarea name="en_shippingreturn" id="summernote2" class="form-control">{{ $product->en_shippingreturn }}</textarea>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <label for="en_additionalinformation">Additional
+                                                            Information</label>
+                                                        <textarea name="en_additionalinformation" id="summernote3" class="form-control">{{ $product->en_additionalinformation }}</textarea>
+                                                    </div>
+
+                                                    {{-- Image Sections with Previews --}}
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @php
+                                                            $imgField =
+                                                                $i == 1
+                                                                    ? 'primary_image'
+                                                                    : ($i == 2
+                                                                        ? 'image_two'
+                                                                        : ($i == 3
+                                                                            ? 'image_three'
+                                                                            : ($i == 4
+                                                                                ? 'image_four'
+                                                                                : 'image_five')));
+                                                        @endphp
+                                                        <div class="input__group mb-25">
+                                                            <label>{{ str_replace('_', ' ', ucfirst($imgField)) }}</label>
+                                                            <input type="file"
+                                                                class="form-control putImage{{ $i }}"
+                                                                name="{{ $imgField }}">
+                                                            <img src="{{ asset($product->$imgField) }}"
+                                                                id="target{{ $i }}"
+                                                                style="width: 80px; margin-top: 10px; border: 1px solid #ddd; padding: 5px;" />
+                                                        </div>
+                                                    @endfor
+
+                                                    {{-- Status Switches --}}
+                                                    <div class="input__group mb-25">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" value="1" name="status"
+                                                                class="custom-control-input" id="customSwitch1"
+                                                                {{ $product->status ? 'checked' : '' }}>
+                                                            <label class="custom-control-label"
+                                                                for="customSwitch1">Status</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" value="1" name="feature"
+                                                                class="custom-control-input" id="customSwitch2"
+                                                                {{ $product->feature ? 'checked' : '' }}>
+                                                            <label class="custom-control-label"
+                                                                for="customSwitch2">Featured Product</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" value="1" name="best_sale"
+                                                                class="custom-control-input" id="customSwitch3"
+                                                                {{ $product->best_sale ? 'checked' : '' }}>
+                                                            <label class="custom-control-label" for="customSwitch3">Best
+                                                                Selling</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" value="1" name="on_sale"
+                                                                class="custom-control-input" id="customSwitch4"
+                                                                {{ $product->on_sale ? 'checked' : '' }}>
+                                                            <label class="custom-control-label" for="customSwitch4">On
+                                                                Sale</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input__group mb-25">
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox" value="1" name="on_arrival"
+                                                                class="custom-control-input" id="customSwitch5"
+                                                                {{ $product->on_arrival ? 'checked' : '' }}>
+                                                            <label class="custom-control-label" for="customSwitch5">New
+                                                                Arrival</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {{-- German Section --}}
+                                            <div class="col-md-6">
+                                                <div class="form-vertical__item bg-style">
+                                                    <div class="item-top mb-30">
+                                                        <h2>German:</h2>
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="gn-product-name">Product Name</label>
+                                                        <input type="text" class="form-control" id="gn-product-name"
+                                                            name="gn_name" value="{{ $product->gn_name }}"
+                                                            placeholder="Name">
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="gn_about">About</label>
+                                                        <textarea name="gn_about" id="gn_about" class="form-control" placeholder="About">{{ $product->gn_about }}</textarea>
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="gn_description">Description</label>
+                                                        <textarea name="gn_description" id="summernote4" class="form-control">{{ $product->gn_description }}</textarea>
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="gn_shippingreturn">Shipping Return</label>
+                                                        <textarea name="gn_shippingreturn" id="summernote5" class="form-control">{{ $product->gn_shippingreturn }}</textarea>
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="gn_additionalinformation">Additional
+                                                            Information</label>
+                                                        <textarea name="gn_additionalinformation" id="summernote6" class="form-control">{{ $product->gn_additionalinformation }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group text-center mt-30">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
+                                                Update Product</button>
                                         </div>
                                     </form>
                                 </div>

@@ -50,9 +50,10 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-one" role="tabpanel"
                                     aria-labelledby="nav-one-tab">
-                                    <form enctype="multipart/form-data" method="POST" action="{{ route('admin.product.store') }}">
+                                    <form enctype="multipart/form-data" method="POST"
+                                        action="{{ route('admin.product.store') }}">
                                         @csrf
-
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-vertical__item bg-style">
@@ -71,7 +72,7 @@
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">Brand Name</label>
-                                                        <select class="form-control" id="en_brand_name" name="en_name">
+                                                        <select class="form-control" id="en_brand_name" name="brand_id">
                                                             <option value="" selected disabled> ---Select Brand---
                                                             </option>
                                                             @forelse ($brands as $brand)
@@ -98,13 +99,10 @@
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">Item Tag</label>
-                                                        <select class="form-control" id="item_teg" name="tag_id">
-                                                            <option value="" selected disabled>---Select item---
-                                                            </option>
+                                                        <select class="form-control" name="tag_id">
+                                                            <option value="" disabled>---Select item---</option>
                                                             @foreach ($tags as $tag)
-                                                                <option value="{{ $tag->id }}"
-                                                                    {{ old('item_teg') == $tag->id ? 'selected' : '' }}>
-                                                                    {{ $tag->name }}
+                                                                <option value="{{ $tag->id}}">{{ $tag->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>

@@ -7,8 +7,10 @@ use App\Http\Controllers\dashboard\HomeController;
 use App\Http\Controllers\dashboard\BrandController;
 use App\Http\Controllers\dashboard\CouponController;
 use App\Http\Controllers\dashboard\SliderController;
+use App\Http\Controllers\dashboard\GatewayController;
 use App\Http\Controllers\dashboard\ProductController;
 use App\Http\Controllers\dashboard\CategoryController;
+use App\Http\Controllers\dashboard\PayGatewayController;
 use App\Http\Controllers\dashboard\TestimonialController;
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
@@ -18,7 +20,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    // Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
@@ -69,6 +71,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Route::get('/testimonial/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
     // Route::post('/testimonial/update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
     // Route::get('/testimonial/delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
+
+
+    // payment gateway
+    Route::get('/gateway', [PayGatewayController::class, 'edit'])->name('gateway.edit');
+    Route::put('/gateway/update/{id}', [PayGatewayController::class, 'update'])->name('gateway.update');
 
     
 

@@ -12,11 +12,11 @@
     <div class="breadcrumb-area">
         <div class="container">
             <div class="breadcrumb-wrap text-center">
-                <h2 class="page-title">Rosmo Namino</h2>
+                <h2 class="page-title">{{ $product->en_name }}</h2>
                 <ul class="breadcrumb-pages">
-                    <li class="page-item"><a class="page-item-link" href="http://127.0.0.1:8000">Home</a>
+                    <li class="page-item"><a class="page-item-link" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="page-item">Product Single Page</li>
+                    <li class="page-item">Product Details Page</li>
                 </ul>
             </div>
         </div>
@@ -34,35 +34,35 @@
                                 <ul class="product-thumb-silide slider slider-nav">
 
                                     <li class="single-item"><img class="single-item-image"
-                                            src="assets/images/products/tshirt.png" alt="product" /></li>
+                                            src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" /></li>
                                     <li class="single-item"><img class="single-item-image"
-                                            src="assets/images/products/tshirt.png" alt="product" />
+                                            src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </li>
                                     <li class="single-item"><img class="single-item-image"
-                                            src="assets/images/products/tshirt.png" alt="product" />
+                                            src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </li>
                                     <li class="single-item"><img class="single-item-image"
-                                            src="assets/images/products/tshirt.png" alt="product" /></li>
+                                            src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" /></li>
                                     <li class="single-item"><img class="single-item-image"
-                                            src="assets/images/products/tshirt.png" alt="product" /></li>
+                                            src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" /></li>
                                 </ul>
                             </div>
                             <div class="product-slier-big-image">
                                 <div class="product-priview-slide slider slider-for">
                                     <div class="single-slide">
-                                        <img class="slide-image" src="assets/images/products/tshirt.png" alt="product" />
+                                        <img class="slide-image" src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </div>
                                     <div class="single-slide">
-                                        <img class="slide-image" src="assets/images/products/tshirt.png" alt="product" />
+                                        <img class="slide-image" src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </div>
                                     <div class="single-slide">
-                                        <img class="slide-image" src="assets/images/products/tshirt.png" alt="product" />
+                                        <img class="slide-image" src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </div>
                                     <div class="single-slide">
-                                        <img class="slide-image" src="assets/images/products/tshirt.png" alt="product" />
+                                        <img class="slide-image" src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </div>
                                     <div class="single-slide">
-                                        <img class="slide-image" src="assets/images/products/tshirt.png" alt="product" />
+                                        <img class="slide-image" src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" />
                                     </div>
 
                                 </div>
@@ -72,26 +72,25 @@
                     <div class="col-lg-6">
                         <div class="product-single-right">
                             <div class="product-info">
-                                <h4 class="product-catagory">HOT - COLLECTION</h4>
+                                <h4 class="product-catagory"> {{ $product->sale }} - Collection</h4>
 
-                                <h3 class="product-name">
-                                    Rosmo Namino</h3>
+                                <h3 class="product-name">{{ $product->en_name }}</h3>
                                 <!-- This is server side code. User can not modify it. -->
                                 <ul class="product-review">
-                                    <li class="review-item"><i class="flaticon-star"></i></li>
-                                    <li class="review-item"><i class="flaticon-star"></i></li>
-                                    <li class="review-item"><i class="flaticon-star"></i></li>
-                                    <li class="review-item"><i class="flaticon-star"></i></li>
-                                    <li class="review-item"><i class="flaticon-star"></i></li>
+                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                    <li class="review-item text-black"><i class="flaticon-star"></i></li>
                                 </ul>
 
                                 <div class="product-price">
-                                    <span class="price">$ 450</span>
-                                    <span class="regular-price">$ 500</span>
+                                    <span class="price">{{ $product->price - $product->discount }}</span>
+                                    <span class="regular-price">{{ $product->price }}</span>
                                 </div>
 
-                                <p class="note-text">Please note: We have this product in United States warehouse. If
-                                    destination means you can receive the parcel faster and earlier than expected.
+                                <p class="note-text">
+                                    <span>Availability:</span> In Stock
                                 </p>
 
                                 <div class="product-color-area">
@@ -130,7 +129,7 @@
                                             class="icon flaticon-bar-chart"></i></a>
                                 </div>
                                 <div class="product-bottom-button d-flex">
-                                    <a href="javascript:void(0)" class="primary-btn buyNow" data-id="5">Buy Now</a>
+                                    <a href="javascript:void(0)" class="primary-btn buyNow" data-id="5"><i class="icon fas fa-shopping-bag"></i> Buy Now</a>
                                     <a href="javascript:void(0)" title="Add To Cart" class="add-cart addCart"
                                         data-id="5">Add To Cart
                                         <i class="icon fas fa-plus-circle"></i></a>
@@ -139,11 +138,11 @@
                             <div class="product-right-bottom">
                                 <ul class="features">
                                     <li class="single-feature"><img class="icon"
-                                            src="assets/images/delivery-van-icon.svg" alt="icon" /><strong
+                                            src="{{ asset('frontend/assets/images/delivery-van-icon.svg') }}" alt="icon" /><strong
                                             class="feature-title">Estimated Delivery:</strong><span class="feature-text">7
                                             days</span></li>
                                     <li class="single-feature"><img class="icon"
-                                            src="assets/images/shipping-return.svg" alt="icon" /><strong
+                                            src="{{ asset('frontend/assets/images/shipping-return.svg') }}" alt="icon" /><strong
                                             class="feature-title">Shipping Charge:</strong><span class="feature-text">
                                             $ 60
 
@@ -210,28 +209,7 @@
                     <div class="tab-pane fade show active" id="Description" role="tabpanel"
                         aria-labelledby="Description-tab">
                         <div class="product-description">
-                            <p class="description-text">Praesent sapien massa, convallis a pellentesque nec, egestas non
-                                nisi. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien
-                                massa, convallis a pellentesque nec, egestas non nisi. Proin eget tortor risus.
-                                Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus
-                                nibh. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur Vivamus
-                                magna justo,egestas non nisi. Curabitur non nulla sit amet nisl emper magna ultrices
-                                non. Sed ac elit viverra eros fermentum commodo. Nunc et congue enim. Nulla ultricies
-                                porta </p>
-                            <p class="description-text">Curabitur aliquet quam id dui posuere blandit. Donec rutrum
-                                congue leo eget malesuada. Donec rutrum congue leo eget malesuada. Donec rutrum congue
-                                leo eget malesuada. Praesent sapien massa, convallis a pellentesque nec, egestas non
-                                nisi. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur
-                                non nulla sit amet nisl tempus convallis quis ac egestas non nisi. Curabitur non nulla
-                                sit amet nisl tempus convallis quis ac emper magna ultrices non. Sed ac elit viverra
-                                eros fermentum commodo. Nunc et congue enim. Nulla ultricies</p>
-                            <p class="description-text">Cras ultricies ligula sed magna dictum porta. Vestibulum ac diam
-                                sit amet quam vehicula elementum sed sit amet dui. Cras ultricies ligula sed magna
-                                dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent
-                                sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum
-                                primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque,
-                                auctor sit amet aliquam vel, ullamcorper sit amet ligula. emper magna ultrices non. Sed
-                                ac elit viverra eros fermentum commodo. Nunc et congue enim. Nulla ultricies</p>
+                            <p class="description-text">{!! $product->en_description !!}</p>
                         </div>
                     </div>
 
@@ -242,11 +220,11 @@
                                     <span class="review-point">0</span>
                                     <!-- This is server side code. User can not modify it. -->
                                     <ul class="product-review">
-                                        <li class="review-item"><i class="flaticon-star"></i></li>
-                                        <li class="review-item"><i class="flaticon-star"></i></li>
-                                        <li class="review-item"><i class="flaticon-star"></i></li>
-                                        <li class="review-item"><i class="flaticon-star"></i></li>
-                                        <li class="review-item"><i class="flaticon-star"></i></li>
+                                        <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                        <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                        <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                        <li class="review-item text-black"><i class="flaticon-star"></i></li>
+                                        <li class="review-item text-black"><i class="flaticon-star"></i></li>
                                     </ul>
                                     <span class="review-count">0
                                         Reviews</span>
@@ -262,51 +240,12 @@
                     <div class="tab-pane fade" id="Shipping-Return" role="tabpanel"
                         aria-labelledby="Shipping-Return-tab">
                         <div class="shipping-return-area">
-                            <p class="return-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut
-                                blandit risus. Donec mollis nec tellus et rutrum. Orci varius natoque penatibus et
-                                magnis dis parturient montes, nascetur ridiculus mus. Ut consequat quam a purus faucibus
-                                scelerisque. Mauris ac dui ante. Pellentesque congue porttitor tempus. Donec sodales
-                                dapibus urna sed dictum. Duis congue posuere libero, a aliquam est porta quis.</p>
-                            <p class="return-text">Donec ullamcorper magna enim, vitae fermentum turpis elementum quis.
-                                Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-                            <p class="return-text">Curabitur vel sem mi. Proin in lobortis ipsum. Aliquam rutrum tempor
-                                ex ac rutrum. Maecenas nunc nulla, placerat at eleifend in, viverra etos sem. Nam
-                                sagittis lacus metus, dignissim blandit magna euismod eget. Suspendisse a nisl lacus.
-                                Phasellus eget augue tincidunt, sollicitudin lectus sed, convallis desto. Pellentesque
-                                vitae dui lacinia, venenatis erat sit amet, fringilla felis. Nullam maximus nisi nec mi
-                                facilisis.</p>
+                            <div class="return-text">{!! $product->en_shippingreturn !!}</div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="Additional-Information" role="tabpanel"
                         aria-labelledby="Additional-Information-tab">
-                        <p class="additional-information-text">Quisque velit nisi, pretium ut lacinia in, elementum id
-                            enim. Pellentesque in ipsum id orci porta dapibus. Mauris blandit aliquet elit, eget
-                            tincidunt nibh pulvinar a. Vivamus magna justo, lacinia eget consectetur sed, convallis at
-                            tellus. Curabitur aliquet quam id dui posuere blandit. Praesent sapien massa, convallis a
-                            pellentesque nec, egestas non nisi. Donec sollicitudin molestie malesuada. Nulla quis lorem
-                            ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Cras ultricies
-                            ligula sed magna dictum porta. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                            Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                            Nulla quis lorem ut libero malesuada feugiat. </p>
-                        <ul class="additional-feature">
-                            <li class="single-feature">
-                                <h3 class="feature-title">Comodous:</h3>
-                                <p class="feature-text">Comodous in tempor ullamcorper miaculis</p>
-                            </li>
-                            <li class="single-feature">
-                                <h3 class="feature-title">Mattis laoreet:</h3>
-                                <p class="feature-text">Pellentesque vitae neque mollis urna mattis laoreet.</p>
-                            </li>
-                            <li class="single-feature">
-                                <h3 class="feature-title">Divamus de ametos:</h3>
-                                <p class="feature-text">Divamus sit amet purus justo</p>
-                            </li>
-                            <li class="single-feature">
-                                <h3 class="feature-title">Molestie:</h3>
-                                <p class="feature-text">Proin molestie egestas orci ac suscipit risus posuere loremous
-                                </p>
-                            </li>
-                        </ul>
+                        <div class="additional-information-text">{!! $product->en_additionalinformation !!}</div>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@
                         <div class="breadcrumb__content__right">
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/dashboard">Home</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Payment Gateway</li>
                                 </ul>
@@ -44,75 +44,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>PayPal</td>
-                                        <td><img src="assets/images/payment-gateway/paypal.png" alt="PayPal">
-                                        </td>
-                                        <td>
-                                            <button class="btn-action " data-bs-toggle="modal"
-                                                data-bs-target="#createModal1">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Stripe</td>
-                                        <td><img src="assets/images/payment-gateway/payment-method.png" alt="Stripe">
-                                        </td>
-                                        <td>
-                                            <button class="btn-action " data-bs-toggle="modal"
-                                                data-bs-target="#createModal2">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Razorpay</td>
-                                        <td><img src="assets/images/payment-gateway/razorpay.png" alt="Razorpay">
-                                        </td>
-                                        <td>
-                                            <button class="btn-action " data-bs-toggle="modal"
-                                                data-bs-target="#createModal3">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bank</td>
-                                        <td><img src="assets/images/payment-gateway/bank.png" alt="Bank">
-                                        </td>
-                                        <td>
-                                            <button class="btn-action " data-bs-toggle="modal"
-                                                data-bs-target="#createModal4">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sslcommerz</td>
-                                        <td><img src="assets/images/payment-gateway/sslcommerz.png" alt="Sslcommerz">
-                                        </td>
-                                        <td>
-                                            <button class="btn-action " data-bs-toggle="modal"
-                                                data-bs-target="#createModal5">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>Cash On Delivey</td>
-                                        <td>
-                                            <img src="assets/images/payment-gateway/cod.jpg" alt="Cash On Delivey">
-                                        </td>
-                                        <td>
-                                            <button class="btn-action " data-bs-toggle="modal"
-                                                data-bs-target="#createModalCod">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                    @forelse ($gateways as $gateway)
+                                        <tr>
+                                            <td>{{ $gateway->name }}</td>
+                                            <td>
+                                                <img src="{{ asset('dashboard/assets/images/payment-gateway/paypal.png') }}"
+                                                    alt="{{ $gateway->name }}">
+                                            </td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="btn-action" data-bs-toggle="modal"
+                                                    data-bs-target="#createModal1" data-id="{{ $gateway->id }}"
+                                                    data-name="{{ $gateway->name }}"
+                                                    data-image="{{ asset('uploaded_files/payment-gateway/' . $gateway->image) }}"
+                                                    data-key1="{{ $gateway->credentials['client_id'] ?? ($gateway->credentials['publishable_key'] ?? '') }}"
+                                                    data-key2="{{ $gateway->credentials['client_secret'] ?? ($gateway->credentials['secret_key'] ?? '') }}"
+                                                    data-mode="{{ $gateway->credentials['mode'] ?? 'sandbox' }}"
+                                                    data-status="{{ $gateway->status }}">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <div>
+                                            <h4 class="text-center">No Payment Gateway Found</h4>
+                                        </div>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -132,13 +88,13 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form enctype="multipart/form-data" method="POST"
-                            action="http://127.0.0.1:8000/admin/payment-gateway-update/paypal">
+                        {{-- <form enctype="multipart/form-data" method="POST" action="#">
                             <div class="modal-body">
-                                <input type="hidden" name="_token" value="lQnPJszFLzHk1PTa9MiQLLAw2hp88UgTyN0H2TXf">
+                                @csrf
                                 <div class="input__group mb-25">
                                     <label for="question">Name</label>
-                                    <input type="text" name="name" placeholder="Name" value="PayPal">
+                                    <input type="text" name="name" placeholder="Name"
+                                        value="{{ $gateway->name ?? '' }}">
                                 </div>
                                 <div class="input__group mb-25">
                                     <label for="exampleInputEmail1">Thumbnail</label>
@@ -155,7 +111,7 @@
                                 <div class="input__group mb-25">
                                     <label for="exampleInputEmail1">Client Secret</label>
                                     <input type="text" name="paypal_client_secret"
-                                        value="ELMx8Z_ddA0Z597lD-dDPssM4VxBbnWvvoxb1mjuIiMCHLRSzbSN6owESivW4moqRPPYOTyl1J9QxSx0">
+                                        value="{{ $gateway->paypal_client_secret ?? '' }}">
                                 </div>
                                 <div class="input__group mb-25">
                                     <label>Mode</label>
@@ -180,11 +136,132 @@
                                 <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
+                        </form> --}}
+                        {{-- <form id="editGatewayForm" enctype="multipart/form-data" method="POST"
+                            action="{{ route('admin.gateway.update', $gateway->id) }}">
+                            @csrf
+                            @method('PUT')
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="gateway_id">
+
+                                <div class="input__group mb-25">
+                                    <label>Gateway Name</label>
+                                    <input type="text" name="name" id="edit_name" readonly>
+                                </div>
+
+                                <div class="input__group mb-25">
+                                    <label>Thumbnail</label>
+                                    <input type="file" class="putImage1" name="image" id="image">
+                                    <img class="admin_image" src="" id="target1"
+                                        style="width: 100px; margin-top: 10px;" />
+                                </div>
+
+                                <div class="input__group mb-25">
+                                    <label id="label_one">Field One</label>
+                                    <input type="text" name="key_one" id="edit_key_one">
+                                </div>
+
+                                <div class="input__group mb-25">
+                                    <label id="label_two">Field Two</label>
+                                    <input type="text" name="key_two" id="edit_key_two">
+                                </div>
+
+                                <div class="input__group mb-25">
+                                    <label>Mode</label>
+                                    <select name="mode" id="edit_mode">
+                                        <option value="sandbox">Sandbox</option>
+                                        <option value="live">Live</option>
+                                    </select>
+                                </div>
+                                @if ($gateway->slug !== 'cash-on-delivery')
+                                    <div class="form-group">
+                                        <label>Key One</label>
+                                        <input type="text" name="key_one"
+                                            value="{{ $gateway->credentials['key_one'] ?? '' }}">
+                                    </div>
+                                @else
+                                    <p class="text-muted">Cash on delivery does not require any credentials.</p>
+                                @endif
+
+                                <div class="input__group mb-25">
+                                    <label>Visibility</label>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" name="status" class="custom-control-input" id="edit_status"
+                                            value="1">
+                                        <label class="custom-control-label" for="edit_status">Click here to check/uncheck
+                                            visibility.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form> --}}
+                        <form id="editGatewayForm" enctype="multipart/form-data" method="POST"
+                            action="{{ route('admin.gateway.update', $gateway->id) }}">
+                            @csrf
+                            @method('PUT')
+                            <div class="modal-body">
+                                <input type="hidden" name="id" id="gateway_id">
+
+                                <div class="input__group mb-25">
+                                    <label>Gateway Name</label>
+                                    <input type="text" name="name" id="edit_name" class="form-control" readonly>
+                                </div>
+
+                                <div class="input__group mb-25">
+                                    <label>Thumbnail</label>
+                                    <input type="file" class="putImage1 form-control" name="image" id="image">
+                                    <img class="admin_image" src="" id="target1"
+                                        style="width: 100px; margin-top: 10px;" />
+                                </div>
+
+                                <div id="credentials_fields">
+                                    <div class="input__group mb-25">
+                                        <label id="label_one">Field One</label>
+                                        <input type="text" name="key_one" id="edit_key_one" class="form-control">
+                                    </div>
+
+                                    <div class="input__group mb-25">
+                                        <label id="label_two">Field Two</label>
+                                        <input type="text" name="key_two" id="edit_key_two" class="form-control">
+                                    </div>
+
+                                    <div class="input__group mb-25">
+                                        <label>Mode</label>
+                                        <select name="mode" id="edit_mode" class="form-control">
+                                            <option value="sandbox">Sandbox</option>
+                                            <option value="live">Live</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="cod_message" style="display: none;">
+                                    <p class="text-muted alert alert-secondary">Cash on delivery does not require any
+                                        credentials.</p>
+                                </div>
+
+                                <div class="input__group mb-25 mt-3">
+                                    <label>Visibility</label>
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" name="status" class="custom-control-input"
+                                            id="edit_status" value="1">
+                                        <label class="custom-control-label" for="edit_status">Click here to toggle
+                                            visibility.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger me-2" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
                         </form>
+
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="createModal2" tabindex="-1" role="dialog" aria-labelledby="createModalTitle2"
+            {{-- <div class="modal fade" id="createModal2" tabindex="-1" role="dialog" aria-labelledby="createModalTitle2"
                 aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -211,14 +288,12 @@
                                 </div>
                                 <div class="input__group mb-25">
                                     <label for="exampleInputEmail1">Key</label>
-                                    <input type="text" name="stripe_key"
-                                        value="">
+                                    <input type="text" name="stripe_key" value="">
                                 </div>
-                                {{-- <div class="input__group mb-25">
+                                <div class="input__group mb-25">
                                     <label for="exampleInputEmail1">Secret</label>
-                                    <input type="text" name="stripe_secret"
-                                        value="">
-                                </div> --}}
+                                    <input type="text" name="stripe_secret" value="">
+                                </div>
                                 <div class="input__group mb-25">
                                     <label>Visibility</label>
                                     <div class="custom-control custom-switch">
@@ -598,10 +673,83 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).on('click', '.btn-action', function() {
+            // টেবিলের data attributes থেকে ডেটা নেওয়া
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            let image = $(this).data('image');
+            let key1 = $(this).data('key1');
+            let key2 = $(this).data('key2');
+            let mode = $(this).data('mode');
+            let status = $(this).data('status');
+
+            // ফর্ম ফিল্ডে ভ্যালু সেট করা
+            $('#gateway_id').val(id);
+            $('#edit_name').val(name);
+            $('#edit_key_one').val(key1);
+            $('#edit_key_two').val(key2);
+            $('#edit_mode').val(mode);
+            $('#target1').attr('src', image);
+
+            // স্ট্যাটাস চেক করা
+            if (status == 1) {
+                $('#edit_status').prop('checked', true);
+            } else {
+                $('#edit_status').prop('checked', false);
+            }
+
+            // গেটওয়ে অনুযায়ী লেবেল পরিবর্তন করা
+            if (name === 'PayPal') {
+                $('#label_one').text('Client ID');
+                $('#label_two').text('Client Secret');
+            } else if (name === 'Stripe') {
+                $('#label_one').text('Publishable Key');
+                $('#label_two').text('Secret Key');
+            } else {
+                $('#label_one').text('App Key');
+                $('#label_two').text('App Secret');
+            }
+
+            // আপনার এডিট বাটনের ক্লিকের ভেতর এই লজিকটি দিন
+            function editGateway(gateway) {
+                $('#gateway_id').val(gateway.id);
+                $('#edit_name').val(gateway.name);
+
+                // ইমেজ প্রিভিউ সেট করা
+                $('#target1').attr('src', '/uploads/gateways/' + gateway.image);
+
+                // COD চেক করা
+                if (gateway.slug === 'cod') {
+                    $('#credentials_fields').hide(); // ইনপুট ফিল্ড লুকিয়ে ফেলবে
+                    $('#cod_message').show(); // মেসেজ দেখাবে
+                } else {
+                    $('#credentials_fields').show(); // ইনপুট ফিল্ড দেখাবে
+                    $('#cod_message').hide(); // মেসেজ লুকাবে
+
+                    // ভ্যালু পপুলেট করা
+                    $('#edit_key_one').val(gateway.credentials.key_one || gateway.credentials.client_id || gateway
+                        .credentials.publishable_key);
+                    $('#edit_key_two').val(gateway.credentials.key_two || gateway.credentials.client_secret ||
+                        gateway.credentials.secret_key);
+                    $('#edit_mode').val(gateway.credentials.mode);
+
+                    // ডাইনামিক লেবেল সেট করা (ঐচ্ছিক)
+                    if (gateway.slug === 'paypal') {
+                        $('#label_one').text('Client ID');
+                        $('#label_two').text('Client Secret');
+                    } else if (gateway.slug === 'stripe') {
+                        $('#label_one').text('Publishable Key');
+                        $('#label_two').text('Secret Key');
+                    }
+                }
+            }
+        });
+    </script>
 @endpush

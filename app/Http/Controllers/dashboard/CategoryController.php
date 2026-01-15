@@ -2,30 +2,7 @@
 
 namespace App\Http\Controllers\dashboard;
 
-<<<<<<< HEAD
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
-class CategoryController extends Controller
-{
-    public function indexBrand(){
-        return view('dashboard.pages.brand.index');
-    }
-    
-    public function createBrand(){
-        return view('dashboard.pages.brand.create');
-    }
-
-
-    public function indexCategory(){
-        return view('dashboard.pages.category.index');
-    }
-
-    public function createCategory(){
-        return view('dashboard.pages.category.create');
-    }
-}
-=======
+use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -122,4 +99,3 @@ class CategoryController extends Controller
         return redirect()->route('admin.category.index')->with('success', 'Category deleted successfully');
     }
 }
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d

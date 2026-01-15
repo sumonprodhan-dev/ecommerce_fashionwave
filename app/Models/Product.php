@@ -10,7 +10,7 @@ class Product extends Model
     protected $table = 'products';
 
     protected $casts = [
-    'product_tag' => 'array',
+    'product_tag_id' => 'array',
     ];
 
     function category(){
@@ -19,6 +19,10 @@ class Product extends Model
 
     function brand(){
         return $this->belongsTo(Brand::class);
+    }
+
+    function tags(){
+        return $this->belongsToMany(Tag::class);
     }
 
 
