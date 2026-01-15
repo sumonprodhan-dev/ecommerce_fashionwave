@@ -274,7 +274,7 @@
                                         <div class="single-grid-product">
                                             <div class="product-top">
                                                 <a href="{{ route('product.details', $product->en_slug) }}"><img class="product-thumbnal"
-                                                        src="{{ asset('frontend/assets/images/products/tshirt.png') }}" alt="product" /></a>
+                                                        src="{{ asset('uploads/products/' . $product->primary_image ?? '') }}" alt="product" /></a>
                                                 <div class="product-flags">
                                                     <span class="product-flag sale">{{ $product->sale }}</span>
                                                     <span class="product-flag discount">{{ $product->discount }}</span>

@@ -7,16 +7,13 @@
     <style>
         #ProductTable {
             table-layout: fixed;
-            /* Column width control korbe */
             width: 100% !important;
         }
 
         #ProductTable td,
         #ProductTable th {
             white-space: normal !important;
-            /* Lekha boro hole niche neme asbe */
             word-break: break-word;
-            /* Boro boro nam kete niche neme asbe */
             vertical-align: middle;
         }
     </style>
@@ -26,7 +23,7 @@
     <!-- Container Fluid-->
     <div class="page-content">
         <div class="container-fluid">
-            <div id="table-url" data-url="http://127.0.0.1:8000/admin/product"></div>
+            <div id="table-url" data-url="{{ route('admin.product.index') }}"></div>
 
             <div class="row">
                 <div class="col-md-12">
@@ -39,7 +36,7 @@
                         <div class="breadcrumb__content__right">
                             <nav aria-label="breadcrumb">
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/admin/dashboard">Home</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Product</li>
                                 </ul>
@@ -58,8 +55,8 @@
 
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" rowspan="1" colspan="1" style="width: 5%;"
-                                            aria-label="#">#</th>
+                                        <th class="sorting_asc" rowspan="1" colspan="1" style="width: 5%;" aria-label="#">#
+                                        </th>
                                         <th class="sorting" tabindex="0" aria-controls="ProductTable" rowspan="1"
                                             colspan="1" style="width: 10%;"
                                             aria-label="Image: activate to sort column ascending">Image</th>
@@ -78,7 +75,7 @@
                                             colspan="1" style="width: 15%;"
                                             aria-label="Price: activate to sort column ascending">Price</th>
                                         <th class="sorting" tabindex="0" aria-controls="ProductTable" rowspan="1"
-                                            colspan="1" style="width: 5%;"
+                                            colspan="1" style="width: 6%;"
                                             aria-label="Status: activate to sort column ascending">Status</th>
                                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 10%;"
                                             aria-label="Action">Action</th>
@@ -88,25 +85,45 @@
                                     @forelse ($products as $key => $product)
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">{{ $key + 1 }}</td>
-                                            <td><img src="http://127.0.0.1:8000/uploaded_files/product_image/product-image-3.png"
-                                                    border="0" width="50" class="img-rounded" align="center"></td>
+                                            <td><img src="{{ asset('uploads/products/' . $product->primary_image) }}" border="0"
+                                                    width="50" class="rounded text-center" ></td>
                                             <td>{{ $product->en_name }}</td>
                                             <td>{{ $product->category->en_name }}</td>
                                             <td>{{ $product->brand->en_name }}</td>
-                                            <td><span
-                                                    class="badge admin-new-price text-success">{{ $product->price }}</span>
-                                                @if ($product->discount_price > 0)
+                                            <td><span class="badge admin-new-price text-success">{{ $product->discount_price }}</span>
+                                                @if ($product->price > 0)
                                                     <span
-                                                        class="badge admin-old-price text-danger">{{ $product->discount_price }}</span>
+                                                        class="badge admin-old-price text-danger">{{ $product->price }}</span>
                                                 @endif
                                             </td>
 
-                                            <td>{{ $product->status }}</td>
+                                            <td>
+                                                @if ($product->status == 1)
+                                                    <span class="status active">Active</span>
+                                                @else
+                                                    <span class="status inactive">Inactive</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="action__buttons">
-                                                    <a href="{{ route('admin.product.edit', $product->id) }}"  class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a  href="#" class="btn-action"><i class="fas fa-toggle-on"></i></a>
-                                                    <a href="#" class="btn-action delete"><i class="fas fa-trash-alt"></i></a>
+                                                    <a href="{{ route('admin.product.edit', $product->id) }}" class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="{{ route('admin.product.status', $product->id) }}"
+                                                        class="btn-action fs-5">
+                                                        @if($product->status)
+                                                            <i class="fas fa-toggle-on text-success"></i>
+                                                        @else
+                                                            <i class="fas fa-toggle-off text-danger"></i>
+                                                        @endif
+                                                    </a>
+                                                    {{-- delete --}}
+                                                    <form action="{{ route('admin.product.delete', $product->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn-action delete-confirm ms-3 fs-5">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -128,4 +145,24 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $('.delete-confirm').click(function (event) {
+            var form = $(this).closest("form");
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Delete this product?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
+    </script>
 @endpush

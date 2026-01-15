@@ -317,7 +317,7 @@
                                     <form enctype="multipart/form-data" method="POST"
                                         action="{{ route('admin.product.update', $product->id) }}">
                                         @csrf
-                                        @method('PUT')
+                                        @method('POST')
 
                                         <div class="row">
                                             {{-- English Section --}}
@@ -380,6 +380,25 @@
                                                     </div>
 
                                                     <div class="input__group mb-25">
+                                                    <label for="product_tag">Product Tag</label>
+
+                                                        @php
+                                                            $tags = old('product_tag', $productTags ?? []);
+                                                        @endphp
+
+                                                        <select name="product_tag[]" multiple class="form-control select2-multiple">
+                                                            @foreach ($tags as $tag)
+                                                                <option value="{{ $tag }}" selected>{{ $tag }}</option>
+                                                            @endforeach
+                                                        </select>
+
+                                                        @error('product_tag')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+
+
+                                                    <div class="input__group mb-25">
                                                         <label for="qty">Quantity</label>
                                                         <input type="text" class="form-control" id="qty"
                                                             name="qty" value="{{ $product->qty }}"
@@ -388,23 +407,22 @@
 
                                                     <div class="input__group mb-25">
                                                         <label for="price">Price</label>
-                                                        <input type="number" min="0" class="form-control"
-                                                            id="price" name="price" value="{{ $product->price }}"
-                                                            placeholder="Price">
+                                                        <input type="number" min="0" class="form-control" id="price" name="price" 
+                                                            value="{{ $product->price }}" placeholder="Price">
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="discount">Discount (%)</label>
-                                                        <input type="number" class="form-control" id="discount"
-                                                            name="discount" value="{{ $product->discount }}"
-                                                            placeholder="Discount">
+                                                        <input type="number" class="form-control" id="discount" name="discount" 
+                                                            value="{{ $product->discount }}" placeholder="Discount">
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="discount_price">Discount Price</label>
-                                                        <input type="number" class="form-control" id="discount_price"
-                                                            name="discount_price" value="{{ $product->discount_price }}">
+                                                        <input type="number" class="form-control" id="discount_price" name="discount_price" 
+                                                            value="{{ $product->discount_price }}">
                                                     </div>
+
 
                                                     <div class="input__group mb-25">
                                                         <label for="en_about">About</label>
@@ -427,30 +445,56 @@
                                                         <textarea name="en_additionalinformation" id="summernote3" class="form-control">{{ $product->en_additionalinformation }}</textarea>
                                                     </div>
 
-                                                    {{-- Image Sections with Previews --}}
-                                                    @for ($i = 1; $i <= 5; $i++)
-                                                        @php
-                                                            $imgField =
-                                                                $i == 1
-                                                                    ? 'primary_image'
-                                                                    : ($i == 2
-                                                                        ? 'image_two'
-                                                                        : ($i == 3
-                                                                            ? 'image_three'
-                                                                            : ($i == 4
-                                                                                ? 'image_four'
-                                                                                : 'image_five')));
-                                                        @endphp
-                                                        <div class="input__group mb-25">
-                                                            <label>{{ str_replace('_', ' ', ucfirst($imgField)) }}</label>
-                                                            <input type="file"
-                                                                class="form-control putImage{{ $i }}"
-                                                                name="{{ $imgField }}">
-                                                            <img src="{{ asset($product->$imgField) }}"
-                                                                id="target{{ $i }}"
-                                                                style="width: 80px; margin-top: 10px; border: 1px solid #ddd; padding: 5px;" />
-                                                        </div>
-                                                    @endfor
+                                                     <div class="input__group mb-25">
+                                                        <label for="primary_image">Primary Image</label>
+                                                        <input type="file" class="form-control putImage1"
+                                                            name="primary_image"  id="primary_image">
+                                                        <img src="{{ asset('uploads/products/'.$product->primary_image) }}" class="rounded mt-1" id="target1" style="width: 80px;" />
+                                                        {{-- error message --}}
+                                                        @error('primary_image')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="image_two">Image 2</label>
+                                                        <input type="file" class="form-control putImage2"
+                                                            name="image_two" id="image_two">
+                                                        <img src="{{ asset('uploads/products/'.$product->image_two) }}" class="rounded mt-1" id="target2" style="width: 80px;" />
+                                                        {{-- error message --}}
+                                                        @error('image_two')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="image_three">Image 3</label>
+                                                        <input type="file" class="form-control putImage3"
+                                                            name="image_three" id="image_three">
+                                                        <img src="{{ asset('uploads/products/'.$product->image_three) }}" class="rounded mt-1" id="target3" style="width: 80px;" />
+                                                        {{-- error message --}}
+                                                        @error('image_three')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="image_four">Image 4</label>
+                                                        <input type="file" class="form-control putImage4"
+                                                            name="image_four" id="image_four">
+                                                        <img src="{{ asset('uploads/products/'.$product->image_four) }}" class="rounded mt-1" id="target4" style="width: 80px;" />
+                                                        {{-- error message --}}
+                                                        @error('image_four')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="input__group mb-25">
+                                                        <label for="image_five">Image 5</label>
+                                                        <input type="file" class="form-control putImage5"
+                                                            name="image_five" id="image_five">
+                                                        <img src="{{ asset('uploads/products/'.$product->image_five) }}" class="rounded mt-1" id="target5" style="width: 80px;" />
+                                                        {{-- error message --}}
+                                                        @error('image_five')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
 
                                                     {{-- Status Switches --}}
                                                     <div class="input__group mb-25">
@@ -555,4 +599,159 @@
 @endsection
 
 @push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#en-product-name').on('keyup', function() {
+                let name = $(this).val();
+                let slug = name.toLowerCase()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/[\s_-]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+
+                $('#en-product-slug').val(slug);
+            });
+        });
+    </script>
+
+    <script>
+    $('.tag_two').select2({
+        tags: true,
+        tokenSeparators: [',']
+    });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.select2-multiple').select2({
+                tags: true,
+                tokenSeparators: [',', ' '],
+                placeholder: "Enter keywords",
+                maximumSelectionLength: 5,
+                language: {
+                    maximumSelected: function(e) {
+                        return "You can only select up to 5 keywords";
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        "use strict";
+        $(document).ready(function() {
+            $("#summernote").summernote({
+                placeholder: 'Description',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+        $(document).ready(function() {
+            $("#summernote2").summernote({
+                placeholder: 'Shipping Return',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+        $(document).ready(function() {
+            $("#summernote3").summernote({
+                placeholder: 'Additional Information',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+        $(document).ready(function() {
+            $("#summernote4").summernote({
+                placeholder: 'Description',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+        $(document).ready(function() {
+            $("#summernote5").summernote({
+                placeholder: 'Shipping Return',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+        $(document).ready(function() {
+            $("#summernote6").summernote({
+                placeholder: 'Additional Information',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+
+    <script>
+    const priceInput = document.getElementById('price');
+    const discountInput = document.getElementById('discount');
+    const discountPriceInput = document.getElementById('discount_price');
+
+    function calculateDiscountPrice() {
+    let price = parseFloat(priceInput.value) || 0;
+    let discount = parseFloat(discountInput.value) || 0;
+
+    if(discount > 100) discount = 100;
+    if(discount < 0) discount = 0;    
+
+    let discountedPrice = price - (price * discount / 100);
+    discountPriceInput.value = discountedPrice.toFixed(2);
+    }
+
+
+    calculateDiscountPrice();
+
+    priceInput.addEventListener('input', calculateDiscountPrice);
+    discountInput.addEventListener('input', calculateDiscountPrice);
+    </script>
+
 @endpush
+

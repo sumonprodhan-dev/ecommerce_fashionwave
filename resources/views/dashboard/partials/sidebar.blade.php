@@ -6,14 +6,14 @@
         </button>
     </div>
     <div class="sidebar__brand">
-        <a href="assets/dashboard">
-            <img src="assets/images/logo/footer-logo.png" alt="icon">
+        <a href="{{ route('admin.dashboard') }}">
+            <img src="{{ asset('dashboard/assets/images/logo/footer-logo.png') }}" style="width: 190px; border-radius: 10px 4px;" alt="icon">
         </a>
     </div>
     <ul id="sidebar-menu" class="sidebar__menu">
         <li class="mm-active">
-            <a href="dashboard.html">
-                <img src="assets/images/icons/sidebar/dashboard.svg" alt="icon">
+            <a href="{{ route('admin.dashboard') }}">
+                <img src="{{ asset('dashboard/assets/images/icons/sidebar/dashboard.svg') }}" alt="icon">
                 <span>Dashboard</span>
             </a>
         </li>

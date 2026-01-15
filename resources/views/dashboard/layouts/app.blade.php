@@ -40,7 +40,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-primary me-2" data-bs-dismiss="modal">Cancel</button>
-                    <a href="assets/logout" class="btn btn-primary">Logout</a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        @method('post')
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

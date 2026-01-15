@@ -20,9 +20,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
-    // Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/admin/product/status/{id}', [ProductController::class, 'toggleStatus'])->name('product.status');
+    Route::DELETE('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
 
     // coupon
     // Route::get('/coupon/index', [CouponController::class, 'index'])->name('coupon.index');

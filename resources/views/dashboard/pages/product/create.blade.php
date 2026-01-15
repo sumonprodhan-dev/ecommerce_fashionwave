@@ -64,16 +64,24 @@
                                                         <label for="en-product-name">Product Name</label>
                                                         <input type="text" class="form-control" id="en-product-name"
                                                             name="en_name" value="{{ old('en_name') }}" placeholder="Name">
+                                                        {{-- error message --}}
+                                                        @error('en_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="en-product-slug">Product Slug</label>
                                                         <input type="text" class="form-control" id="en-product-slug"
                                                             name="en_slug" value="{{ old('en_slug') }}" placeholder="Slug">
+                                                        {{-- error message --}}
+                                                        @error('en_slug')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">Brand Name</label>
                                                         <select class="form-control" id="en_brand_name" name="brand_id">
-                                                            <option value="" selected disabled> ---Select Brand---
+                                                            <option value="" selected disabled>Select Brand
                                                             </option>
                                                             @forelse ($brands as $brand)
                                                                 <option value="{{ $brand->id }}">{{ $brand->en_name }}
@@ -87,7 +95,7 @@
                                                         <label for="exampleInputEmail1">Category Name</label>
                                                         <select class="form-control" id="en_category_name"
                                                             name="category_id">
-                                                            <option value="" selected disabled> ---Select Category---
+                                                            <option value="" selected disabled>Select Category
                                                             </option>
                                                             @forelse ($categories as $category)
                                                                 <option value="{{ $category->id }}">{{ $category->en_name }}
@@ -100,12 +108,16 @@
                                                     <div class="input__group mb-25">
                                                         <label for="exampleInputEmail1">Item Tag</label>
                                                         <select class="form-control" name="tag_id">
-                                                            <option value="" disabled>---Select item---</option>
+                                                            <option value="" disabled>Select item</option>
                                                             @foreach ($tags as $tag)
                                                                 <option value="{{ $tag->id}}">{{ $tag->name }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
+                                                        {{-- error message --}}
+                                                        @error('tag_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                     {{-- <div class="input__group mb-25">
@@ -140,24 +152,41 @@
                                                                         {{ $tag }}</option>
                                                                 @endforeach
                                                             @endif
+                                                            
                                                         </select>
+                                                        {{-- error message --}}
+                                                            @error('product_tag')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="qty">Quantity</label>
                                                         <input type="text" class="form-control" id="qty"
                                                             name="qty" value="" placeholder="Quantity">
+                                                        {{-- error message --}}
+                                                        @error('qty')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="price">Price</label>
                                                         <input type="number" min="0" class="form-control"
                                                             id="price" name="price" value=""
                                                             placeholder="Price">
+                                                        {{-- error message --}}
+                                                        @error('price')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="discount">Discount (in Percentage)</label>
                                                         <input type="number" class="form-control" id="discount"
                                                             name="discount" value="0" placeholder="Discount">
+                                                        {{-- error message --}}
+                                                        @error('discount')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     {{-- <div class="input__group mb-25">
                                                         <label for="discount_price">Discount Price</label>
@@ -168,56 +197,92 @@
                                                         <label for="discount_price">Discount Price</label>
                                                         <input type="number" class="form-control" id="discount_price"
                                                             name="discount_price" value="{{ old('discount_price') }}">
+                                                        {{-- error message --}}
+                                                        @error('discount_price')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="en_about">About</label>
                                                         <textarea name="en_about" id="en_about" class="form-control" placeholder="About"></textarea>
+                                                        @error('en_about')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="en_description">Description</label>
                                                         <textarea name="en_description" id="summernote" class="form-control" placeholder="Description"></textarea>
+                                                        @error('en_description')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="en_shippingreturn">Shipping Return</label>
                                                         <textarea name="en_shippingreturn" id="summernote2" class="form-control" placeholder="Shipping Return"></textarea>
+                                                        @error('en_shippingreturn')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="en_additionalinformation">Additional
                                                             Information</label>
                                                         <textarea name="en_additionalinformation" id="summernote3" class="form-control"></textarea>
+                                                        @error('en_additionalinformation')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="primary_image">Primary Image</label>
                                                         <input type="file" class="form-control putImage1"
                                                             name="primary_image" id="primary_image">
-                                                        <img src="" id="target1" />
+                                                        <img src="" class="mt-1 rounded" id="target1" />
+                                                        {{-- error message --}}
+                                                        @error('primary_image')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="image_two">Image 2</label>
                                                         <input type="file" class="form-control putImage2"
                                                             name="image_two" id="image_two">
-                                                        <img src="" id="target2" />
+                                                        <img src="" class="mt-1 rounded" id="target2" />
+                                                        {{-- error message --}}
+                                                        @error('image_two')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="image_three">Image 3</label>
                                                         <input type="file" class="form-control putImage3"
                                                             name="image_three" id="image_three">
-                                                        <img src="" id="target3" />
+                                                        <img src="" class="mt-1 rounded" id="target3" />
+                                                        {{-- error message --}}
+                                                        @error('image_three')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="image_four">Image 4</label>
                                                         <input type="file" class="form-control putImage4"
                                                             name="image_four" id="image_four">
-                                                        <img src="" id="target4" />
+                                                        <img src="" class="mt-1 rounded" id="target4" />
+                                                        {{-- error message --}}
+                                                        @error('image_four')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="image_five">Image 5</label>
                                                         <input type="file" class="form-control putImage5"
                                                             name="image_five" id="image_five">
-                                                        <img src="" id="target5" />
+                                                        <img src="" class="mt-1 rounded" id="target5" />
+                                                        {{-- error message --}}
+                                                        @error('image_five')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="input__group mb-25">
@@ -271,24 +336,40 @@
                                                         <label for="gn-product-name">Product Name</label>
                                                         <input type="text" class="form-control" id="gn-product-name"
                                                             name="gn_name" value="" placeholder="Name">
+                                                        {{-- error message --}}
+                                                        @error('gn_name')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="gn_about">About</label>
                                                         <textarea name="gn_about" id="gn_about" class="form-control" placeholder="About"></textarea>
+                                                        @error('gn_about')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="gn_description">Description</label>
                                                         <textarea name="gn_description" id="summernote4" class="form-control"></textarea>
+                                                        @error('gn_description')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="input__group mb-25">
                                                         <label for="gn_shippingreturn">Shipping Return</label>
                                                         <textarea name="gn_shippingreturn" id="summernote5" class="form-control"></textarea>
+                                                        @error('gn_shippingreturn')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="input__group mb-25">
                                                         <label for="gn_additionalinformation">Additional
                                                             Information</label>
                                                         <textarea name="gn_additionalinformation" id="summernote6" class="form-control"></textarea>
+                                                        @error('gn_additionalinformation')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
 
                                                 </div>
@@ -297,7 +378,7 @@
                                         {{-- button --}}
                                         <div class="form-group text-center">
                                             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>
-                                                Submit</button>
+                                                Create Product</button>
                                         </div>
                                     </form>
                                 </div>
@@ -434,5 +515,28 @@
             });
             $('.dropdown-toggle').dropdown();
         });
+    </script>
+
+    <script>
+    const priceInput = document.getElementById('price');
+    const discountInput = document.getElementById('discount');
+    const discountPriceInput = document.getElementById('discount_price');
+
+    function calculateDiscountPrice() {
+    let price = parseFloat(priceInput.value) || 0;
+    let discount = parseFloat(discountInput.value) || 0;
+
+    if(discount > 100) discount = 100;
+    if(discount < 0) discount = 0;
+
+    let discountedPrice = price - (price * discount / 100);
+    discountPriceInput.value = discountedPrice.toFixed(2);
+    }
+
+
+    calculateDiscountPrice();
+
+    priceInput.addEventListener('input', calculateDiscountPrice);
+    discountInput.addEventListener('input', calculateDiscountPrice);
     </script>
 @endpush

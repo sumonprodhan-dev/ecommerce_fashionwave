@@ -10,7 +10,7 @@ class Product extends Model
     protected $table = 'products';
 
     protected $casts = [
-    'product_tag_id' => 'array',
+    'product_tag' => 'array',
     ];
 
     function category(){

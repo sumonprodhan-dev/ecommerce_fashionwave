@@ -121,31 +121,6 @@
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<<<<<<< HEAD
-<script>
-=======
-{{-- <script>
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
-    toastr.options = {
-        "closeButton": false,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": false,
-        "positionClass": "toast-bottom-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-<<<<<<< HEAD
-=======
-</script> --}}
 
 <script>
     toastr.options = {
@@ -183,5 +158,4 @@
             toastr.error("{{ $error }}");
         @endforeach
     @endif
->>>>>>> 9509e7274e11799fea425ef941f59fafcf719a3d
 </script>
