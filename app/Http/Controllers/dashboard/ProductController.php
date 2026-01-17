@@ -105,7 +105,6 @@ class ProductController extends Controller
                 $imageName = time() . '_' . $field . '.' . $file->getClientOriginalExtension();
 
                 $destinationPath = public_path('uploads/products');
-                $file->move($destinationPath, $imageName);
 
                 $product->$field = $imageName;
             }
@@ -114,6 +113,7 @@ class ProductController extends Controller
 
         // dd($product);
         $product->save();
+        $file->move($destinationPath, $imageName);
 
         return redirect()->route('admin.product.index')->with('success', 'Product Added Successfully');
     }

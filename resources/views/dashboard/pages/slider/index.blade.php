@@ -37,7 +37,7 @@
                     <div class="customers__area bg-style mb-30">
                         <div class="item-title">
                             <div class="col-xs-6">
-                                <a href="http://127.0.0.1:8000/admin/slider/create" class="btn btn-md btn-info">Add
+                                <a href="{{ route('admin.slider.create') }}" class="btn btn-md btn-info">Add
                                     Slider</a>
                             </div>
                         </div>
@@ -83,44 +83,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" class="odd">
-                                            <td>01</td>
-                                            <td class="sorting_1"><img
-                                                    src="assets/images/background/header-background.png" border="0"
-                                                    width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>dgdgdg</td>
-                                            <td>fgfg</td>
-                                            <td>tyty</td>
-                                            <td>fgfg</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="slider-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td>02</td>
-                                            <td class="sorting_1"><img
-                                                    src="assets/images/background/header-background.png" border="0"
-                                                    width="80" class="img-rounded" align="center">
-                                            </td>
 
-                                            <td>tfhgh</td>
-                                            <td>t</td>
-                                            <td>t</td>
-                                            <td>t</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="slider-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
+                                        @forelse ($sliders as $key => $slider)
+                                            <tr role="row" class="odd">
+                                                <td>{{ $key + 1 }}</td>
+                                                <td class="sorting_1"><img
+                                                        src="{{ asset('uploads/sliders/' . $slider->image) }}"
+                                                        width="80" class="img-rounded">
+                                                </td>
+                                                <td>{{ $slider->en_title }}</td>
+                                                <td>{{ $slider->en_sub_title }}</td>
+                                                <td>{{ $slider->en_description }}</td>
+                                                <td>{{ $slider->en_button_text }}</td>
+                                                <td>
+                                                    <div class="action__buttons">
+                                                        <a href="{{ route('admin.slider.edit', $slider->id) }}" class="btn-action"><i
+                                                                class="fa-solid fa-pen-to-square"></i></a>
+                                                        <a href="{{ route('admin.slider.destroy', $slider->id) }}" class="btn-action delete">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+
+
+                                            </tr>
+                                        @empty
+                                            <div>
+                                                <h3 class="text-center">No Data Found</h3>
+                                            </div>
+                                        @endforelse
                                     </tbody>
                                 </table>
-                                <div class="dataTables_info" id="SliderTable_info" role="status" aria-live="polite">
+                                {{-- <div class="dataTables_info" id="SliderTable_info" role="status" aria-live="polite">
                                     Showing 1 to 2 of 2 entries</div>
                                 <div class="dataTables_paginate paging_simple_numbers" id="SliderTable_paginate"><a
                                         class="paginate_button previous disabled" aria-controls="SliderTable"
@@ -128,7 +122,14 @@
                                             class="paginate_button current" aria-controls="SliderTable" data-dt-idx="1"
                                             tabindex="0">1</a></span><a class="paginate_button next disabled"
                                         aria-controls="SliderTable" data-dt-idx="2" tabindex="-1"
-                                        id="SliderTable_next">Next</a></div>
+                                        id="SliderTable_next">Next</a>
+                                </div> --}}
+
+                                {{-- blade pagination --}}
+
+                                <div class="mt-4">
+                                    {{ $sliders->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

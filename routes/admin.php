@@ -58,12 +58,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/tag/delete/{id}', [TagController::class, 'delete'])->name('tag.delete');
 
     // slider
-    // Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
-    // Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
-    // Route::post('/slider/store', [SliderController::class, 'store'])->name('slider.store');
-    // Route::get('/slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
-    // Route::post('/slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
-    // Route::get('/slider/delete/{id}', [SliderController::class, 'delete'])->name('slider.delete');
+    Route::get('/slider/index', [SliderController::class, 'index'])->name('slider.index');
+    Route::get('/slider/create', [SliderController::class, 'create'])->name('slider.create');
+    Route::post('/slider/store', [SliderController::class, 'store'])->name('slider.store');
+    Route::get('/slider/edit/{id}', [SliderController::class, 'edit'])->name('slider.edit');
+    Route::post('/slider/update/{id}', [SliderController::class, 'update'])->name('slider.update');
+    Route::get('/slider/delete/{id}', [SliderController::class, 'delete'])->name('slider.destroy');
 
     // testimonial
     // Route::get('/testimonial/index', [TestimonialController::class, 'index'])->name('testimonial.index');

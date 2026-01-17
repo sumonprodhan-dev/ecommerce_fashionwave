@@ -75,7 +75,7 @@
                                             colspan="1" style="width: 15%;"
                                             aria-label="Price: activate to sort column ascending">Price</th>
                                         <th class="sorting" tabindex="0" aria-controls="ProductTable" rowspan="1"
-                                            colspan="1" style="width: 6%;"
+                                            colspan="1" style="width: 10%;"
                                             aria-label="Status: activate to sort column ascending">Status</th>
                                         <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 10%;"
                                             aria-label="Action">Action</th>

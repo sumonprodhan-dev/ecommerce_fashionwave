@@ -75,13 +75,6 @@
                         <span>Product Tags</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="">
-                        <i class="fa fa-circle"></i>
-                        <span>Sliders</span>
-                    </a>
-                </li>
-
             </ul>
         </li>
         <li class="">
@@ -214,7 +207,7 @@
             </ul>
         </li>
         <li class="">
-            <a href="sliders.html">
+            <a href="{{ route('admin.slider.index') }}">
                 <i class="fas fa-list-ol"></i>
                 <span>Sliders</span>
             </a>
