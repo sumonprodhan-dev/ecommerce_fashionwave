@@ -10,6 +10,7 @@ use App\Http\Controllers\dashboard\SliderController;
 use App\Http\Controllers\dashboard\GatewayController;
 use App\Http\Controllers\dashboard\ProductController;
 use App\Http\Controllers\dashboard\CategoryController;
+use App\Http\Controllers\dashboard\SettingsController;
 use App\Http\Controllers\dashboard\PayGatewayController;
 use App\Http\Controllers\dashboard\TestimonialController;
 
@@ -77,6 +78,25 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // payment gateway
     Route::get('/gateway', [PayGatewayController::class, 'edit'])->name('gateway.edit');
     Route::put('/gateway/update/{id}', [PayGatewayController::class, 'update'])->name('gateway.update');
+
+
+    // // settings
+    // Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    // Route::post('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+
+    // // custom page
+    Route::get('/contact-us', [SettingsController::class, 'contactPage'])->name('contact.index');
+    Route::post('/contact-us/update', [SettingsController::class, 'contactPageUpdate'])->name('contact.update');
+
+    Route::get('/about-us', [SettingsController::class, 'aboutPage'])->name('about.index');
+    Route::post('/about-us/update', [SettingsController::class, 'aboutPageUpdate'])->name('about.update');
+
+    Route::get('/privacy-policy', [SettingsController::class, 'privacyindex'])->name('privacy.index');
+    Route::post('/privacy-policy/update', [SettingsController::class, 'privacyUpdate'])->name('privacy.update');
+
+    Route::get('/terms-condition', [SettingsController::class, 'termsPage'])->name('terms.index');
+    Route::post('/terms-condition/update', [SettingsController::class, 'termsPageUpdate'])->name('terms.update');
+
 
     
 

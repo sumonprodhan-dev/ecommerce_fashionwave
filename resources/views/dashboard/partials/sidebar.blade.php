@@ -299,26 +299,32 @@
                 <span>Payment Gateway</span>
             </a>
         </li>
-        <li class="">
+        <li class="mb-4">
             <a class="has-arrow" href="#">
                 <i class="fas fa-address-book"></i>
                 <span>Company</span>
             </a>
             <ul>
                 <li class="">
-                    <a href="faq.html">
+                    <a href="{{ route('admin.about.index') }}">
                         <i class="fa fa-circle"></i>
-                        <span>FAQ</span>
+                        <span>About Us</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="pages.html">
+                    <a href="{{ route('admin.contact.index') }}">
+                        <i class="fa fa-circle"></i>
+                        <span>Contact Us</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{{ route('admin.privacy.index') }}">
                         <i class="fa fa-circle"></i>
                         <span>Privacy Policy</span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="pages.html">
+                    <a href="{{ route('admin.terms.index') }}">
                         <i class="fa fa-circle"></i>
                         <span>Terms &amp; Condition</span>
                     </a>
