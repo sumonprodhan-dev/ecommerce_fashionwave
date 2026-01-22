@@ -43,17 +43,28 @@
                                             <option value="25">25</option>
                                             <option value="50">50</option>
                                             <option value="100">100</option>
-                                        </select> entries</label></div>
-                                <div id="TestimonialTable_filter" class="dataTables_filter"><label>Search:<input
-                                            type="search" class="" placeholder=""
-                                            aria-controls="TestimonialTable"></label></div>
+                                        </select> entries</label>
+                                </div>
+                                <div id="TestimonialTable_filter" class="dataTables_filter d-flex">
+                                    <label>Search:<input type="search" class="" placeholder=""
+                                            aria-controls="TestimonialTable">
+                                    </label>
+                                    {{-- create button --}}
+                                <div class="float-right ms-4">
+                                    <a href="{{ route('admin.testimonial.create') }}"
+                                        class="btn btn-primary float-right">Create</a>
+                                </div>
+                                </div>
                                 <div id="TestimonialTable_processing" class="dataTables_processing" style="display: none;">
-                                    Processing...</div>
+                                    Processing...
+                                </div>
+                                
                                 <table id="TestimonialTable"
                                     class="dataTableHover row-border data-table-filter table-style dataTable no-footer"
                                     role="grid" aria-describedby="TestimonialTable_info" style="width: 1196px;">
                                     <thead>
                                         <tr role="row">
+
                                             <th class="sorting_asc" tabindex="0" aria-controls="TestimonialTable"
                                                 rowspan="1" colspan="1" aria-sort="ascending"
                                                 aria-label="Image: activate to sort column descending" style="width: 91px;">
@@ -70,7 +81,7 @@
                                                 rowspan="1" colspan="1"
                                                 aria-label="German Description: activate to sort column ascending"
                                                 style="width: 221px;">German Description</th>
-                                            <th class="sorting" tabindex="0" aria-controls="TestimonialTable"
+                                            <th class="sorting text-center" tabindex="0" aria-controls="TestimonialTable"
                                                 rowspan="1" colspan="1"
                                                 aria-label="Star: activate to sort column ascending" style="width: 112px;">
                                                 Star</th>
@@ -79,146 +90,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonal-image-1.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Andrew Jaimond</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonal-image-1.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Mike Clark</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonal-image-2.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Rey mysterio</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonal-image-3.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Big Show</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonial-v2-image-1.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Michael Beven</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonial-v2-image-2.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Randy orton</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonial-v2-image-3.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Jhon Cena</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
-                                        <tr role="row" class="even">
-                                            <td class="sorting_1"><img
-                                                    src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonial-v2-image-3.png"
-                                                    border="0" width="80" class="img-rounded" align="center">
-                                            </td>
-                                            <td>Sheymas</td>
-                                            <td>Nulla porttitor...</td>
-                                            <td>very good company</td>
-                                            <td>5 star</td>
-                                            <td>
-                                                <div class="action__buttons"><a href="testimonial-edit.html"
-                                                        class="btn-action"><i class="fa-solid fa-pen-to-square"></i></a><a
-                                                        href="#" class="btn-action delete"><i
-                                                            class="fas fa-trash-alt"></i></a></div>
-                                            </td>
-                                        </tr>
+                                        @forelse ($testimonials as $key => $testimonial)
+                                            <tr role="row" class="odd">
+                                                <td class="sorting_1"><img
+                                                        src="https://zairito.liveprojectacademys.com/uploaded_files/testimonial/testimonal-image-1.png"
+                                                        border="0" width="80" class="img-rounded" align="center">
+                                                </td>
+                                                <td><span
+                                                        class="d-block font-weight-bold fs-6">{{ $testimonial->name }}</span>
+                                                    <span
+                                                        class="d-block text-success">{{ $testimonial->designation }}</span>
+                                                </td>
+                                                <td>{{ Str::limit($testimonial->en_description, 50) ?? '' }}</td>
+                                                <td>{{ Str::limit($testimonial->gn_description, 50) ?? '' }}</td>
+                                                <td class="text-center">{{ $testimonial->rating }}</td>
+                                                <td>
+                                                    <div class="action__buttons"><a
+                                                            href="{{ route('admin.testimonial.edit', $testimonial->id) }}"
+                                                            class="btn-action"><i
+                                                                class="fa-solid fa-pen-to-square"></i></a><a
+                                                            href="#" class="btn-action delete"><i
+                                                                class="fas fa-trash-alt"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <div>
+                                                <h1 class="text-center">No Testimonial Found</h1>
+                                            </div>
+                                        @endforelse
                                     </tbody>
                                 </table>
-                                <div class="dataTables_info" id="TestimonialTable_info" role="status"
-                                    aria-live="polite">Showing 1 to 8 of 8 entries</div>
-                                <div class="dataTables_paginate paging_simple_numbers" id="TestimonialTable_paginate"><a
-                                        class="paginate_button previous disabled" aria-controls="TestimonialTable"
-                                        data-dt-idx="0" tabindex="-1"
-                                        id="TestimonialTable_previous">Previous</a><span><a
-                                            class="paginate_button current" aria-controls="TestimonialTable"
-                                            data-dt-idx="1" tabindex="0">1</a></span><a
-                                        class="paginate_button next disabled" aria-controls="TestimonialTable"
-                                        data-dt-idx="2" tabindex="-1" id="TestimonialTable_next">Next</a></div>
+                                <div>
+                                    {{ $testimonials->links('pagination::bootstrap-5') }}
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -38,7 +38,7 @@
                             <h3 class="sub-title">
                                 About Us
                             </h3>
-                            <h2 class="section-title">Innovative solutions <br /> to boost your projects</h2>
+                            {{-- <h2 class="section-title">Innovative solutions <br /> to boost your projects</h2>
                         </div>
                         <p class="about-us-text">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
                             posuere consectetur sed, convallis at tellus. Donec rutrum congue leo eget malesuada.
@@ -47,7 +47,10 @@
                         <p class="about-us-text">Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
                             Vivamus suscipit tortor eget felis porttitor volutpat. Sed porttitor lectus nibh. Nulla
                             porttitor accumsan tincidunt. Pellentesque in ipsum id orci porta dapibus. Praesent sapien
-                            massa, convallis a pellentesque nec, </p>
+                            massa, convallis a pellentesque nec, </p> --}}
+                            <div>
+                                {!! $content->content !!}
+                            </div>
                     </div>
                 </div>
             </div>
