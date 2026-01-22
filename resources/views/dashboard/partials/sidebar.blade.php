@@ -7,7 +7,8 @@
     </div>
     <div class="sidebar__brand">
         <a href="{{ route('admin.dashboard') }}">
-            <img src="{{ asset('dashboard/assets/images/logo/footer-logo.png') }}" style="width: 190px; border-radius: 10px 4px;" alt="icon">
+            <img src="{{ asset('dashboard/assets/images/logo/footer-logo.png') }}"
+                style="width: 190px; border-radius: 10px 4px;" alt="icon">
         </a>
     </div>
     <ul id="sidebar-menu" class="sidebar__menu">
@@ -193,7 +194,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="testimonial.html">
+                    <a href="{{ route('admin.testimonial.index') }}">
                         <i class="fa fa-circle"></i>
                         <span>Testimonial</span>
                     </a>
@@ -305,26 +306,26 @@
                 <span>Company</span>
             </a>
             <ul>
-                <li class="">
-                    <a href="{{ route('admin.about.index') }}">
+                <li>
+                    <a href="{{ route('admin.privacy.index', 'about-us') }}">
                         <i class="fa fa-circle"></i>
                         <span>About Us</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="{{ route('admin.contact.index') }}">
+                <li>
+                    <a href="{{ route('admin.privacy.index', 'contact-us') }}">
                         <i class="fa fa-circle"></i>
                         <span>Contact Us</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="{{ route('admin.privacy.index') }}">
+                <li>
+                    <a href="{{ route('admin.privacy.index', 'privacy-policy') }}">
                         <i class="fa fa-circle"></i>
                         <span>Privacy Policy</span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="{{ route('admin.terms.index') }}">
+                <li>
+                    <a href="{{ route('admin.privacy.index', 'terms-condition') }}">
                         <i class="fa fa-circle"></i>
                         <span>Terms &amp; Condition</span>
                     </a>

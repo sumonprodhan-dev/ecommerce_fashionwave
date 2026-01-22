@@ -13,6 +13,7 @@ use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\SettingsController;
 use App\Http\Controllers\dashboard\PayGatewayController;
 use App\Http\Controllers\dashboard\TestimonialController;
+use Ramsey\Collection\Set;
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
@@ -67,12 +68,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/slider/delete/{id}', [SliderController::class, 'delete'])->name('slider.destroy');
 
     // testimonial
-    // Route::get('/testimonial/index', [TestimonialController::class, 'index'])->name('testimonial.index');
-    // Route::get('/testimonial/create', [TestimonialController::class, 'create'])->name('testimonial.create');
-    // Route::post('/testimonial/store', [TestimonialController::class, 'store'])->name('testimonial.store');
-    // Route::get('/testimonial/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
-    // Route::post('/testimonial/update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
-    // Route::get('/testimonial/delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
+    Route::get('/testimonial/index', [TestimonialController::class, 'index'])->name('testimonial.index');
+    Route::get('/testimonial/create', [TestimonialController::class, 'create'])->name('testimonial.create');
+    Route::post('/testimonial/store', [TestimonialController::class, 'store'])->name('testimonial.store');
+    Route::get('/testimonial/edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+    Route::post('/testimonial/update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
+    Route::get('/testimonial/delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
 
 
     // payment gateway
@@ -80,25 +81,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('/gateway/update/{id}', [PayGatewayController::class, 'update'])->name('gateway.update');
 
 
-    // // settings
-    // Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
-    // Route::post('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
 
-    // // custom page
-    Route::get('/contact-us', [SettingsController::class, 'contactPage'])->name('contact.index');
-    Route::post('/contact-us/update', [SettingsController::class, 'contactPageUpdate'])->name('contact.update');
-
-    Route::get('/about-us', [SettingsController::class, 'aboutPage'])->name('about.index');
-    Route::post('/about-us/update', [SettingsController::class, 'aboutPageUpdate'])->name('about.update');
-
-    Route::get('/privacy-policy', [SettingsController::class, 'privacyindex'])->name('privacy.index');
-    Route::post('/privacy-policy/update', [SettingsController::class, 'privacyUpdate'])->name('privacy.update');
-
-    Route::get('/terms-condition', [SettingsController::class, 'termsPage'])->name('terms.index');
-    Route::post('/terms-condition/update', [SettingsController::class, 'termsPageUpdate'])->name('terms.update');
+    Route::get('/custom-page/{slug}', [SettingsController::class, 'privacyindex'])->name('privacy.index');
+    Route::post('/custom-page/{slug}/update', [SettingsController::class, 'privacyUpdate'])->name('privacy.update');
 
 
-    
+    Route::get('cc', [SettingsController::class, 'cc'])->name('cc');
 
 
     

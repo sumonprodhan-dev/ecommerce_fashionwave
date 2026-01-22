@@ -5,11 +5,13 @@ namespace App\Http\Controllers\frontend;
 use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\Custom_page;
 use App\Models\Category;
 use App\Models\Subscriber;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Pest\ArchPresets\Custom;
 
 class HomeController extends Controller
 {
@@ -38,7 +40,8 @@ class HomeController extends Controller
     
 
     public function about(){
-        return view('frontend.pages.about');
+        $content = Custom_page::where('slug', 'about-us')->first();
+        return view('frontend.pages.about', compact('content'));
     }
 
     public function contactUs(){
